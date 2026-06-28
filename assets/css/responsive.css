@@ -1,0 +1,287 @@
+/* =========================================================
+   Responsive — Maverick Business Academy
+   ========================================================= */
+
+/* =========================================================
+   ===== NAVBAR RESPONSIVE =====
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .navbar__nav {
+    display: none;
+  }
+
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /* ===== NUMBERS RESPONSIVE ===== */
+  .numbers__header {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .numbers__header-divider {
+    display: none;
+  }
+
+  .numbers__context {
+    padding-left: 0;
+  }
+
+  .numbers__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__logo-text {
+    font-size: 22px;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /* ===== HERO RESPONSIVE ===== */
+  .hero__headline-line {
+    line-height: 1.05;
+  }
+
+  .hero__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero__ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__trust {
+    gap: 20px;
+  }
+
+  .hero__trust-divider {
+    height: 24px;
+  }
+
+  .hero__scroll-indicator {
+    display: none;
+  }
+
+  .hero__subheading-text br {
+    display: none;
+  }
+
+  /* ===== NUMBERS RESPONSIVE ===== */
+  .numbers__header {
+    margin-bottom: 48px;
+  }
+
+  .numbers__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+  }
+
+  .numbers__card-inner {
+    padding: 32px 24px;
+  }
+
+  .numbers__value {
+    font-size: clamp(36px, 8vw, 52px);
+  }
+}
+
+@media (max-width: 480px) {
+  /* ===== HERO RESPONSIVE ===== */
+  .hero__content-inner {
+    gap: 24px;
+  }
+
+  .hero__trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero__trust-divider {
+    display: none;
+  }
+
+  .hero__eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    gap: 12px;
+    white-space: normal;
+  }
+
+  .hero__eyebrow-line {
+    width: 28px;
+  }
+
+  /* ===== NUMBERS RESPONSIVE ===== */
+  .numbers__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .numbers__card-inner {
+    padding: 28px 20px;
+    gap: 8px;
+  }
+
+  .numbers__value {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .numbers__suffix {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .numbers__label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== WHAT IS MAVERICK RESPONSIVE ===== */
+  .wim__heading {
+    font-size: clamp(32px, 8vw, 52px);
+  }
+
+  .wim__statement-text {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+
+  .wim__statements {
+    margin-top: 32px;
+    gap: 6px;
+  }
+
+  .wim__final {
+    margin-top: 24px;
+  }
+
+  /* ===== WHO WE ARE RESPONSIVE ===== */
+  .wwa__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .wwa__image-col {
+    order: -1;
+  }
+
+  .wwa__image-wrapper {
+    aspect-ratio: 16/9;
+  }
+
+  .wwa__image-accent {
+    top: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .wwa__stats {
+    gap: 16px;
+  }
+
+  .wwa__stat {
+    gap: 6px;
+  }
+
+  .wwa__stat-value {
+    font-size: clamp(28px, 6vw, 40px);
+  }
+
+  .wwa__stat-suffix {
+    font-size: clamp(18px, 4vw, 24px);
+  }
+
+  .wwa__stat-divider {
+    height: 20px;
+    margin: 0 6px;
+  }
+
+  /* ===== WHAT WE DO RESPONSIVE ===== */
+  .wwd__header {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .wwd__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .wwd__card-inner {
+    padding: 32px 24px;
+    gap: 16px;
+  }
+
+  .wwd__card-title {
+    font-size: clamp(22px, 5vw, 28px);
+  }
+
+  .wwd__card-desc {
+    font-size: 14px;
+  }
+
+  .wwd__card-list {
+    gap: 10px;
+  }
+
+  .wwd__card-item {
+    font-size: 13px;
+  }
+
+  /* ===== HOW WE DO IT RESPONSIVE ===== */
+  .hwdi__header {
+    margin-bottom: 48px;
+  }
+
+  .hwdi__steps {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .hwdi__step-inner {
+    padding: 24px 16px;
+  }
+
+  .hwdi__step-number {
+    font-size: clamp(60px, 12vw, 100px);
+    margin-bottom: 12px;
+  }
+
+  .hwdi__step-title {
+    font-size: clamp(24px, 5vw, 32px);
+  }
+
+  .hwdi__step-desc {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .hwdi__connector {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* ===== WHAT IS MAVERICK RESPONSIVE ===== */
+  .wim__heading {
+    font-size: clamp(28px, 9vw, 44px);
+  }
+
+  .wim__statement-text {
+    font-size: clamp(20px, 7vw, 32px);
+  }
+}

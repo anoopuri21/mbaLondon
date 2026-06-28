@@ -1,0 +1,2510 @@
+﻿/* =========================================================
+   ===== ALUMNI NETWORK SECTION =====
+   Maverick Business Academy â€” Alumni Network Marquee
+   ========================================================= */
+
+.alumni {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 120px 0;
+}
+
+@media (max-width: 768px) {
+  .alumni {
+    padding: 80px 0;
+  }
+}
+
+.alumni__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.alumni__heading {
+  margin-bottom: 1rem;
+}
+
+.alumni__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin-bottom: 4rem;
+}
+
+.alumni__marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.alumni__marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.alumni__marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.alumni__marquee-track--left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.alumni__marquee-track--right {
+  animation: marquee-right 40s linear infinite;
+}
+
+.alumni__marquee-wrapper:hover .alumni__marquee-track {
+  animation-play-state: paused;
+}
+
+.alumni__marquee-item {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #ffffff;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.alumni__marquee-item:hover {
+  color: #c9a96e;
+}
+
+.alumni__marquee-sep {
+  color: #c9a96e;
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* =========================================================
+   ===== FEATURED PROGRAMS SECTION =====
+   Maverick Business Academy â€” Horizontal Scroll Programs
+   ========================================================= */
+
+.programs {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  padding-top: 120px;
+  padding-bottom: 0;
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .programs {
+    padding-top: 80px;
+  }
+}
+
+.programs__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.programs__heading {
+  margin-bottom: 1rem;
+  color: #0a0a0a;
+}
+
+.programs__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgba(10, 10, 10, 0.7);
+  max-width: 600px;
+  margin-bottom: 5rem;
+}
+
+/* Scroll wrapper and track */
+.programs__scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.programs__track {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: max-content;
+  will-change: transform;
+}
+
+/* Cards styling */
+.programs__card {
+  width: 480px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  overflow: visible;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.programs__card:hover {
+  border-color: #c9a96e;
+  transform: translateY(-8px);
+}
+
+.programs__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.programs__card-index {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #c9a96e;
+}
+
+.programs__card-badge {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c9a96e;
+  border: 1px solid #c9a96e;
+  border-radius: 2px;
+  padding: 0.4rem 0.8rem;
+}
+
+.programs__card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.programs__card-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: #0a0a0a;
+  line-height: 1.1;
+}
+
+.programs__card-subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: rgba(10, 10, 10, 0.6);
+  margin-top: 0.5rem;
+}
+
+.programs__card-line {
+  width: 40px;
+  height: 1px;
+  background-color: #c9a96e;
+  margin: 1.5rem 0;
+}
+
+.programs__card-link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0a0a0a;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.programs__card-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.programs__card:hover .programs__card-link {
+  color: #c9a96e;
+}
+
+.programs__card:hover .programs__card-arrow {
+  transform: translateX(6px);
+}
+
+/* Mobile responsive styling */
+@media (max-width: 768px) {
+  .programs__scroll-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2rem;
+  }
+
+  .programs__track {
+    width: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    transform: none !important;
+  }
+
+  .programs__card {
+    width: 320px;
+    height: 480px;
+    padding: 2rem;
+    scroll-snap-align: start;
+  }
+}
+
+/* =========================================================
+   ===== WHY MAVERICK SECTION =====
+   Maverick Business Academy â€” Bento Grid
+   ========================================================= */
+
+.why {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 120px 0;
+}
+
+@media (max-width: 768px) {
+  .why {
+    padding: 80px 0;
+  }
+}
+
+.why__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.why__header {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.why__heading {
+  margin-bottom: 1rem;
+}
+
+.why__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: #f5f0eb;
+  max-width: 600px;
+  margin-bottom: 0;
+}
+
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 240px;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.why__tile {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease;
+  text-align: left;
+}
+
+.why__tile--large {
+  grid-column: span 2;
+  grid-row: span 2;
+  padding: 3rem;
+}
+
+.why__tile--wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.why__tile:hover {
+  border-color: #c9a96e;
+  transform: scale(1.01);
+}
+
+.why__tile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.why__tile-icon {
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  transition: color 0.4s ease;
+}
+
+.why__tile:hover .why__tile-icon {
+  color: #c9a96e;
+}
+
+.why__tile-index {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.why__tile-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.why__tile-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.why__tile-description {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.why__tile-line {
+  width: 32px;
+  height: 1px;
+  background-color: #c9a96e;
+  transition: width 0.4s ease;
+}
+
+.why__tile:hover .why__tile-line {
+  width: 64px;
+}
+
+.why__tile--large .why__tile-description {
+  margin-bottom: 0.5rem;
+}
+
+/* Tablet Layout */
+@media (max-width: 1024px) {
+  .why__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 280px;
+  }
+
+  .why__tile,
+  .why__tile--large,
+  .why__tile--wide {
+    grid-column: span 1;
+    grid-row: span 1;
+    padding: 2.5rem;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .why__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(240px, auto);
+  }
+
+  .why__tile,
+  .why__tile--large,
+  .why__tile--wide {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* ============================================================
+   SECTION 10 â€” GLOBAL OPPORTUNITIES & PATHWAYS
+   Editorial split-screen layout. LIGHT theme.
+   Heading: Learning Without Borders
+   ============================================================ */
+
+/* ----- Section Base ----- */
+.opportunities {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.opportunities__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+/* ----- Header (Editorial Left-Aligned) ----- */
+.opportunities__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  max-width: 900px;
+}
+
+.opportunities__heading {
+  color: #0a0a0a;
+  text-align: left;
+  font-size: clamp(2rem, 4vw, 5rem);
+  line-height: 1.05;
+  font-weight: 500;
+  margin: 0;
+}
+
+.opportunities__heading .text-reveal-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.opportunities__heading .text-reveal-inner {
+  display: inline-block;
+}
+
+.opportunities__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: rgba(10, 10, 10, 0.7);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ----- Split Layout ----- */
+.opportunities__split {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Vertical Divider (Middle) */
+.opportunities__divider {
+  width: 1px;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.1);
+  align-self: stretch;
+}
+
+/* ----- Column Block ----- */
+.opportunities__column {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.opportunities__column-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.opportunities__column-index {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #c9a96e;
+  letter-spacing: 0.1em;
+}
+
+.opportunities__column-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.opportunities__column-line {
+  width: 48px;
+  height: 1px;
+  background-color: #0a0a0a;
+}
+
+/* ----- List + Items ----- */
+.opportunities__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.opportunities__item {
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.opportunities__item:last-child {
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.opportunities__link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  padding: 1.75rem 0;
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left 0.4s ease;
+  position: relative;
+}
+
+.opportunities__link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background-color: #c9a96e;
+  transition: width 0.4s ease;
+}
+
+.opportunities__item-number {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: rgba(10, 10, 10, 0.4);
+  letter-spacing: 0.1em;
+  padding-top: 0.25rem;
+  transition: color 0.4s ease;
+}
+
+.opportunities__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.opportunities__item-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  color: #0a0a0a;
+  line-height: 1.2;
+  margin: 0;
+  transition:
+    color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.opportunities__item-desc {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(10, 10, 10, 0.65);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.opportunities__item-arrow {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: rgba(10, 10, 10, 0.3);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    color 0.4s ease;
+  align-self: center;
+}
+
+/* ----- Hover Effects ----- */
+.opportunities__link:hover {
+  padding-left: 1.5rem;
+}
+
+.opportunities__link:hover::before {
+  width: 3px;
+}
+
+.opportunities__link:hover .opportunities__item-number {
+  color: #c9a96e;
+}
+
+.opportunities__link:hover .opportunities__item-title {
+  color: #c9a96e;
+}
+
+.opportunities__link:hover .opportunities__item-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #c9a96e;
+}
+
+/* ----- Responsive: Tablet ----- */
+@media (max-width: 1024px) {
+  .opportunities__split {
+    gap: 3rem;
+  }
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 768px) {
+  .opportunities {
+    padding: 80px 0;
+  }
+
+  .opportunities__inner {
+    gap: 3.5rem;
+  }
+
+  .opportunities__split {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .opportunities__divider {
+    display: none;
+  }
+
+  .opportunities__column {
+    gap: 2rem;
+  }
+
+  .opportunities__column:first-child {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+  }
+
+  .opportunities__link {
+    gap: 1.25rem;
+    padding: 1.5rem 0;
+  }
+
+  .opportunities__link:hover {
+    padding-left: 0.75rem;
+  }
+
+  .opportunities__item-title {
+    font-size: 1.125rem;
+  }
+
+  .opportunities__item-desc {
+    font-size: 0.875rem;
+  }
+
+  .opportunities__item-arrow {
+    display: none;
+  }
+}
+
+/* ============================================================
+   SECTION 11 â€” UNIVERSITY PARTNERS
+   Interactive world map + country detail panel. DARK theme.
+   Heading: Our Global Academic Network
+   ============================================================ */
+
+/* ----- Section Base ----- */
+.partners {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 80px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.partners__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ----- Header Block ----- */
+.partners__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.partners__heading {
+  color: #ffffff;
+  text-align: center;
+}
+
+.partners__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   MAP STAGE
+   ============================================================ */
+
+.partners__map-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  aspect-ratio: 2.4 / 1;
+}
+
+.partners__map-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.partners__map-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Country shapes (land masses) â€” base style */
+.partners__country {
+  fill: rgba(255, 255, 255, 0.04);
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 0.5;
+  transition: fill 0.3s ease;
+}
+
+.partners__country:hover {
+  fill: rgba(255, 255, 255, 0.08);
+}
+
+/* ----- Pin Styling ----- */
+.partners__pin {
+  cursor: pointer;
+  transform-origin: center;
+  outline: none;
+}
+
+.partners__pin:focus-visible {
+  outline: none;
+}
+
+.partners__pin:focus-visible .partners__pin-dot {
+  stroke: #c9a96e;
+  stroke-width: 3;
+}
+
+.partners__pin-dot {
+  fill: #ffffff;
+  stroke: #c9a96e;
+  stroke-width: 0;
+  transition:
+    fill 0.3s ease,
+    stroke-width 0.3s ease,
+    r 0.3s ease;
+}
+
+.partners__pin:hover .partners__pin-dot {
+  fill: #c9a96e;
+  stroke-width: 2;
+}
+
+.partners__pin--hub .partners__pin-dot {
+  fill: #c9a96e;
+}
+
+.partners__pin--active .partners__pin-dot {
+  fill: #c9a96e;
+  stroke-width: 3;
+}
+
+/* Pulsing ring around hub (London) */
+.partners__pin-ring {
+  fill: none;
+  stroke: #c9a96e;
+  stroke-width: 1;
+  opacity: 0.6;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: partners-pulse 2.5s ease-out infinite;
+}
+
+@keyframes partners-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Pin labels */
+.partners__pin-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  fill: #ffffff;
+  text-anchor: middle;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.partners__pin:hover .partners__pin-label,
+.partners__pin--active .partners__pin-label {
+  opacity: 1;
+}
+
+.partners__pin--hub .partners__pin-label {
+  opacity: 1;
+  fill: #c9a96e;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* ============================================================
+   MOBILE COUNTRY LIST (Hidden on desktop)
+   ============================================================ */
+
+.partners__mobile-list {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.partners__mobile-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background-color 0.3s ease,
+    padding-left 0.3s ease;
+}
+
+.partners__mobile-item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.partners__mobile-item:hover,
+.partners__mobile-item--active {
+  background-color: rgba(201, 169, 110, 0.08);
+  padding-left: 1.75rem;
+}
+
+.partners__mobile-country {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.partners__mobile-hub {
+  font-family: "Clash Display", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #c9a96e;
+  border: 1px solid #c9a96e;
+  border-radius: 2px;
+  padding: 0.2rem 0.5rem;
+}
+
+.partners__mobile-count {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.partners__mobile-arrow {
+  font-size: 1.2rem;
+  color: #c9a96e;
+  transition: transform 0.3s ease;
+}
+
+.partners__mobile-item:hover .partners__mobile-arrow,
+.partners__mobile-item--active .partners__mobile-arrow {
+  transform: translateX(6px);
+}
+
+/* ============================================================
+   DETAIL PANEL (University Cards)
+   ============================================================ */
+
+.partners__detail-panel {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.partners__detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.partners__detail-country {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #ffffff;
+  line-height: 1;
+  margin: 0;
+}
+
+.partners__detail-count {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #c9a96e;
+}
+
+/* ----- Universities Grid ----- */
+.partners__universities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2rem;
+}
+
+.partners__university-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition:
+    border-color 0.4s ease,
+    background-color 0.4s ease;
+}
+
+.partners__university-card:hover {
+  border-color: #c9a96e;
+  background-color: rgba(201, 169, 110, 0.03);
+}
+
+/* University Header (Logo + Meta) */
+.partners__university-header {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.partners__university-logo {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.partners__university-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
+.partners__university-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.partners__university-name {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.partners__university-country {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.partners__university-recognition {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #c9a96e;
+  margin-top: 0.25rem;
+}
+
+/* Programs Section */
+.partners__university-programs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.partners__programs-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.partners__program {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: padding-left 0.3s ease;
+}
+
+.partners__program:last-child {
+  border-bottom: none;
+}
+
+.partners__program:hover {
+  padding-left: 0.5rem;
+}
+
+.partners__program-name {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.partners__program-cta {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #c9a96e;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.partners__program-cta:hover {
+  color: #e8d5b0;
+}
+
+.partners__program-cta span {
+  transition: transform 0.3s ease;
+}
+
+.partners__program-cta:hover span {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .partners__universities {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .partners {
+    padding: 80px 0;
+  }
+
+  .partners__inner {
+    gap: 3rem;
+  }
+
+  /* Hide desktop map, show mobile list */
+  .partners__map-stage {
+    display: none;
+  }
+
+  .partners__mobile-list {
+    display: flex;
+  }
+
+  .partners__detail-panel {
+    padding-top: 2rem;
+  }
+
+  .partners__detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .partners__university-card {
+    padding: 1.75rem;
+    gap: 1.5rem;
+  }
+
+  .partners__university-header {
+    grid-template-columns: 60px 1fr;
+    gap: 1rem;
+  }
+
+  .partners__university-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .partners__university-name {
+    font-size: 1.125rem;
+  }
+
+  .partners__program {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* ============================================================
+   SECTION 12 â€” FACULTY INSIGHTS
+   Insight card grid with images. LIGHT theme.
+   Heading: Insights From Industry Experts
+   ============================================================ */
+
+/* ----- Section Base ----- */
+.insights {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  padding: 120px 0;
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .insights {
+    padding: 80px 0;
+  }
+}
+
+.insights__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ----- Header ----- */
+.insights__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.insights__heading {
+  color: #0a0a0a;
+  text-align: center;
+}
+
+.insights__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: rgba(10, 10, 10, 0.7);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ----- Scroll Container ----- */
+.insights__scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.insights__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.insights__scroll {
+  -ms-overflow-style: none;
+}
+
+.insights__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 2rem var(--container-padding, 2rem);
+  width: max-content;
+}
+
+/* ----- Insight Card ----- */
+.insights__card {
+  flex: 0 0 420px;
+  scroll-snap-align: start;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+
+.insights__card:hover {
+  border-color: #c9a96e;
+}
+
+.insights__card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.insights__card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.insights__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.insights__card:hover .insights__card-image img {
+  transform: scale(1.05);
+}
+
+.insights__card-body {
+  padding: 2rem;
+}
+
+.insights__card-badge {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: #c9a96e;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid #c9a96e;
+  padding: 0.4rem 0.8rem;
+  display: inline-block;
+}
+
+.insights__card-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  color: #0a0a0a;
+  line-height: 1.2;
+  margin: 1rem 0 0;
+  transition: color 0.3s ease;
+}
+
+.insights__card:hover .insights__card-title {
+  color: #c9a96e;
+}
+
+.insights__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(10, 10, 10, 0.5);
+  margin-top: 0.75rem;
+}
+
+.insights__card-separator {
+  color: rgba(10, 10, 10, 0.3);
+}
+
+.insights__card-read-more {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #c9a96e;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.insights__card:hover .insights__card-read-more {
+  transform: translateX(4px);
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 768px) {
+  .insights__inner {
+    gap: 3rem;
+  }
+
+  .insights__card {
+    flex: 0 0 320px;
+  }
+
+  .insights__card-body {
+    padding: 1.5rem;
+  }
+}
+
+/* ============================================================
+   SECTION 13 â€” UPCOMING EVENTS
+   Horizontal scroll event cards. DARK theme.
+   Heading: Learn Beyond The Classroom
+   ============================================================ */
+
+/* ----- Section Base ----- */
+.events {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 120px 0;
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .events {
+    padding: 80px 0;
+  }
+}
+
+.events__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ----- Header ----- */
+.events__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.events__heading {
+  color: #ffffff;
+  text-align: center;
+}
+
+.events__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ----- Scroll Container ----- */
+.events__scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.events__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.events__scroll {
+  -ms-overflow-style: none;
+}
+
+.events__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 3rem 1rem;
+  width: max-content;
+}
+
+/* ----- Event Card ----- */
+.events__card {
+  flex: 0 0 380px;
+  scroll-snap-align: start;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: border-color 0.4s ease;
+}
+
+.events__card:hover {
+  border-color: #c9a96e;
+}
+
+.events__card-type {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #c9a96e;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 1px solid #c9a96e;
+  padding: 0.4rem 0.8rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+.events__card-date {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.events__date-day {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(3rem, 5vw, 4rem);
+  color: #ffffff;
+  line-height: 1;
+}
+
+.events__date-month {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #c9a96e;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.events__card-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.events__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.events__meta-separator {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.events__card-desc {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.events__register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #c9a96e;
+  background-color: transparent;
+  color: #c9a96e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.events__register:hover {
+  background-color: #c9a96e;
+  color: #0a0a0a;
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 768px) {
+  .events__inner {
+    gap: 3rem;
+  }
+
+  .events__card {
+    flex: 0 0 300px;
+    padding: 1.5rem;
+  }
+
+  .events__date-day {
+    font-size: 2.5rem;
+  }
+
+  .events__card-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ============================================================
+   SECTION 14 â€” VIDEO TESTIMONIALS
+   Video card grid with tabs + modal. LIGHT theme.
+   Heading: Stories That Inspire
+   ============================================================ */
+
+/* ----- Section Base ----- */
+.testimonials {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  padding: 120px 0;
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 80px 0;
+  }
+}
+
+.testimonials__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ----- Header ----- */
+.testimonials__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonials__heading {
+  color: #0a0a0a;
+  text-align: center;
+}
+
+.testimonials__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: rgba(10, 10, 10, 0.7);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ----- Scroll Container ----- */
+.testimonials__scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.testimonials__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials__scroll {
+  -ms-overflow-style: none;
+}
+
+.testimonials__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 2rem var(--container-padding, 2rem);
+  width: max-content;
+}
+
+/* ----- Testimonial Card ----- */
+.testimonials__card {
+  flex: 0 0 380px;
+  scroll-snap-align: start;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.testimonials__card:hover {
+  transform: translateY(-4px);
+}
+
+.testimonials__card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #c9a96e;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #c9a96e;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.testimonials__card-thumb {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+
+.testimonials__card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.testimonials__card:hover .testimonials__card-thumb img {
+  transform: scale(1.05);
+}
+
+.testimonials__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #c9a96e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.testimonials__card:hover .testimonials__play {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.testimonials__play svg {
+  width: 24px;
+  height: 24px;
+  fill: #0a0a0a;
+}
+
+.testimonials__card-info {
+  padding-top: 1rem;
+}
+
+.testimonials__card-name {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #0a0a0a;
+  margin: 0;
+}
+
+.testimonials__card-role {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(10, 10, 10, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0.25rem 0 0 0;
+}
+
+/* ----- Modal ----- */
+.testimonials__modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.testimonials__modal--active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.testimonials__modal-content {
+  max-width: 1000px;
+  width: 90%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.testimonials__modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.testimonials__modal-close:hover {
+  color: #c9a96e;
+}
+
+.testimonials__modal iframe,
+.testimonials__modal video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 2px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 768px) {
+  .testimonials__inner {
+    gap: 3rem;
+  }
+
+  .testimonials__card {
+    flex: 0 0 300px;
+  }
+
+  .testimonials__play {
+    width: 56px;
+    height: 56px;
+  }
+
+  .testimonials__play svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .testimonials__card-name {
+    font-size: 1rem;
+  }
+
+  .testimonials__card-role {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================================
+   SECTION 15 â€” FINAL CTA
+   Centered call-to-action with gradient. DARK theme.
+   Heading: Ready To Shape Your Future?
+   ============================================================ */
+
+/* ----- Section Base ----- */
+.final-cta {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 160px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(201, 169, 110, 0.08) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .final-cta {
+    padding: 100px 0;
+  }
+}
+
+.final-cta__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.final-cta__heading {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  margin: 0;
+}
+
+.final-cta__subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.final-cta__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.final-cta__btn {
+  padding: 1.25rem 2.5rem;
+  border-radius: 2px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.final-cta__btn--primary {
+  background-color: #c9a96e;
+  color: #0a0a0a;
+  border: 1px solid #c9a96e;
+}
+
+.final-cta__btn--primary:hover {
+  background-color: #e8d5b0;
+  border-color: #e8d5b0;
+}
+
+.final-cta__btn--secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.final-cta__btn--secondary:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.final-cta__phone {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2rem;
+}
+
+.final-cta__phone a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.final-cta__phone a:hover {
+  color: #c9a96e;
+}
+
+/* ----- Responsive: Mobile ----- */
+@media (max-width: 768px) {
+  .final-cta__inner {
+    gap: 1.5rem;
+  }
+
+  .final-cta__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .final-cta__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   SHARED SCROLL ROW â€” Drag + Arrow Buttons
+   Used by: Section 12, 13, 14
+   ============================================================ */
+
+.scroll-row {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-row [data-scroll-container] {
+  cursor: grab;
+  user-select: none;
+}
+
+.scroll-row [data-scroll-container].is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.scroll-row [data-scroll-container].is-dragging * {
+  pointer-events: none;
+}
+
+/* Arrow buttons â€” base */
+.scroll-row__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  background: transparent;
+  padding: 0;
+}
+
+.scroll-row__btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.scroll-row__btn--prev {
+  left: -56px;
+}
+
+.scroll-row__btn--next {
+  right: -56px;
+}
+
+/* Hide when no scroll possible */
+.scroll-row__btn:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Light theme variant (Sections 12, 14) */
+.scroll-row--light .scroll-row__btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  color: #0a0a0a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.scroll-row--light .scroll-row__btn:hover {
+  background: #0a0a0a;
+  color: #ffffff;
+  border-color: #0a0a0a;
+}
+
+/* Dark theme variant (Section 13) */
+.scroll-row--dark .scroll-row__btn {
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.scroll-row--dark .scroll-row__btn:hover {
+  background: #c9a96e;
+  border-color: #c9a96e;
+  color: #0a0a0a;
+}
+
+/* Mobile â€” hide arrow buttons (touch scroll natural) */
+@media (max-width: 768px) {
+  .scroll-row__btn {
+    display: none;
+  }
+}
+/* ============================================================
+   FOOTER
+   Dark theme, 3-column grid + bottom row
+   ============================================================ */
+
+.footer {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 100px 0 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer__main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* ----- Brand Column ----- */
+.footer__col--brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer__logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer__logo-text {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.footer__logo-tagline {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.footer__about {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 380px;
+  margin: 0;
+}
+
+/* ----- Newsletter ----- */
+.footer__newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer__newsletter-title {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.footer__newsletter-desc {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.footer__newsletter-form {
+  display: flex;
+  gap: 0;
+  margin-top: 0.5rem;
+  max-width: 380px;
+}
+
+.footer__newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  padding: 0.875rem 1rem;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.footer__newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer__newsletter-input:focus {
+  border-color: #c9a96e;
+}
+
+.footer__newsletter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: #c9a96e;
+  color: #0a0a0a;
+  border: 1px solid #c9a96e;
+  border-radius: 0 2px 2px 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.footer__newsletter-btn:hover {
+  background: #e8d5b0;
+  border-color: #e8d5b0;
+}
+
+.footer__newsletter-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.footer__newsletter-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ----- Column Headings ----- */
+.footer__heading {
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 1.75rem 0;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.footer__heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  height: 1px;
+  background-color: #c9a96e;
+}
+
+/* ----- Programs Links ----- */
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.footer__link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    padding-left 0.3s ease;
+  display: inline-block;
+}
+
+.footer__link:hover {
+  color: #c9a96e;
+  padding-left: 0.5rem;
+}
+
+/* ----- Contact ----- */
+.footer__contact {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer__contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer__contact-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #c9a96e;
+}
+
+.footer__contact-value {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer__contact-link {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__contact-link:hover {
+  color: #c9a96e;
+}
+
+/* ----- Social Icons ----- */
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.footer__social-link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.3s ease;
+}
+
+.footer__social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer__social-link:hover {
+  background: #c9a96e;
+  border-color: #c9a96e;
+  color: #0a0a0a;
+}
+
+/* ----- Bottom Row ----- */
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer__copyright {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.footer__legal {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.footer__legal-link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__legal-link:hover {
+  color: #c9a96e;
+}
+
+/* ============================================================
+   FOOTER RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .footer__main {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer__col--brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 60px;
+  }
+
+  .footer__main {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .footer__about,
+  .footer__newsletter-form {
+    max-width: 100%;
+  }
+
+  .footer__newsletter-form {
+    flex-direction: column;
+  }
+
+  .footer__newsletter-input {
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
+
+  .footer__newsletter-btn {
+    border-radius: 2px;
+    justify-content: center;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+
+  .footer__legal {
+    gap: 1.5rem;
+  }
+}
