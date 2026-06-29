@@ -1197,7 +1197,7 @@ html.lenis body {
   border: none;
   cursor: pointer;
   padding: 8px;
-  z-index: calc(var(--z-navbar) + 1);
+  z-index: calc(var(--z-navbar) + 10);
 }
 
 .navbar__hamburger-line {
