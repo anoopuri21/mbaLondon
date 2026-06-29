@@ -527,7 +527,7 @@
           <article class="partners__university-card">
             <div class="partners__university-header">
               <div class="partners__university-logo">
-                <img src="${uni.logo}" alt="${uni.name} logo" loading="lazy">
+                <img src="${uni.logo}" alt="${uni.name} logo" loading="lazy" decoding="async" width="160" height="80">
               </div>
               <div class="partners__university-meta">
                 <h4 class="partners__university-name">${uni.name}</h4>

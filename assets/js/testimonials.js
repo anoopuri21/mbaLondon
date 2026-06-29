@@ -104,7 +104,7 @@
       html += `
         <article class="testimonials__card" data-video="${item.video}">
           <div class="testimonials__card-thumb">
-            <img src="${item.thumbnail}" alt="${item.name}" loading="lazy" />
+            <img src="${item.thumbnail}" alt="${item.name}" loading="lazy" decoding="async" width="320" height="220" />
             <span class="testimonials__card-badge">${item.category}</span>
             <button class="testimonials__play" aria-label="Play video by ${item.name}">
               <svg viewBox="0 0 24 24" fill="currentColor">

@@ -162,19 +162,27 @@
 /* Cards styling */
 .programs__card {
   width: 480px;
-  height: 600px;
+  height: 620px;
   background-color: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 2px;
-  padding: 3rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  overflow: visible;
+  overflow: hidden;
   transition:
     border-color 0.4s ease,
     transform 0.4s ease;
+}
+
+.programs__card-media {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
 }
 
 .programs__card:hover {
@@ -186,6 +194,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.75rem;
 }
 
 .programs__card-index {

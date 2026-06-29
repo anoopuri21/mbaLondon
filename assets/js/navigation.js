@@ -40,6 +40,14 @@
   // Desktop dropdowns
   const dropdownItems = navbar.querySelectorAll('.navbar__item--has-dropdown');
 
+  function syncDropdownAccessibility(item) {
+    const trigger = item.querySelector('.navbar__link--trigger');
+    const dropdown = item.querySelector('.navbar__dropdown');
+    if (!trigger || !dropdown) return;
+    const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+    dropdown.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
+  }
+
   // Mobile menu
   const hamburger = navbar.querySelector('.navbar__hamburger');
   const mobileMenu = navbar.querySelector('.navbar__mobile');
@@ -278,6 +286,7 @@
     item.classList.add('is-active');
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
     if (dropdown) dropdown.setAttribute('aria-hidden', 'false');
+    syncDropdownAccessibility(item);
   }
 
   function closeDropdown(item, immediate = false) {
@@ -289,6 +298,7 @@
       if (trigger) trigger.setAttribute('aria-expanded', 'false');
       if (dropdown) dropdown.setAttribute('aria-hidden', 'true');
       dropdownCloseTimeouts.delete(item);
+      syncDropdownAccessibility(item);
     };
 
     if (immediate) {

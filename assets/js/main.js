@@ -179,3 +179,37 @@
   }
 
 })();
+
+(function () {
+  'use strict';
+
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  const whatsappBtn = document.getElementById('whatsapp-float');
+
+  if (scrollToTopBtn) {
+    const toggleVisibility = () => {
+      const shouldShow = window.scrollY > Math.max(window.innerHeight * 0.8, 800);
+      scrollToTopBtn.classList.toggle('is-visible', shouldShow);
+    };
+
+    toggleVisibility();
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+
+    scrollToTopBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (window.lenisInstance) {
+        window.lenisInstance.scrollTo(0, { duration: 1.2 });
+      } else if (window.gsap && window.gsap.to) {
+        window.gsap.to(window, { duration: 1.2, scrollTo: 0, ease: 'power3.inOut' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (whatsappBtn) {
+    const phone = '971500000000';
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    whatsappBtn.setAttribute('href', isMobile ? `https://wa.me/${phone}` : `https://web.whatsapp.com/send?phone=${phone}`);
+  }
+})();
