@@ -1,0 +1,46 @@
+# Cursor Rules — Maverick Business Academy (mbaLondon)
+
+## Read these first, in order, before any task
+1. PROJECT_CONTEXT.md — current state of the codebase
+2. docs/08-AI_INSTRUCTIONS.md — full AI working rules (file-reading
+   strategy, critical rules, output rules, workflows)
+
+Then read only what's relevant to the specific task, per the table in
+docs/08-AI_INSTRUCTIONS.md.
+
+## Absolute rules
+- Do NOT modify any existing `.html`, `.css`, or `.js` file in this repo
+  unless the task explicitly requires it, and never touch `/assets`
+  unless explicitly asked.
+- Tech stack for Phase 1 is **Next.js + Payload CMS 3.x (installed
+  natively inside the Next.js app) + MySQL + Cloudinary + Cloudflare +
+  Zoho + Zapier**. The previously-planned PHP/custom-admin-panel
+  approach is scrapped — never reference or build it.
+- Homepage conversion to Next.js must be pixel-identical: 0% visual or
+  feature change from the current prototype.
+- Inner pages reuse the homepage's design system but use less
+  animation, for load performance.
+- Every page (static Global or dynamic Collection entry) requires the
+  mandatory SEO field group: title, description, keywords, slug, schema
+  JSON, scripts. No exceptions.
+- Program detail pages require an unlimited FAQ repeater field.
+- Don't invent new Payload fields/collections without checking
+  docs/12-PAYLOAD_SCHEMA.md first.
+
+## Full doc index
+- docs/01-PROJECT_BRIEF.md — project scope
+- docs/02-CLIENT_SOP.md — client requirements, page-by-page
+- docs/03-DESIGN_SYSTEM.md — visual rules (critical, never violate)
+- docs/04-TECHNICAL_ARCHITECTURE.md — Phase 1 architecture overview
+- docs/05-CONTENT_SOURCE.md — copy/content
+- docs/06-DEVELOPMENT_LOG.md — progress and known gaps
+- docs/07-CHANGE_LOG.md — change history (log new requirements here
+  before implementing them)
+- docs/08-AI_INSTRUCTIONS.md — how to work on this repo
+- docs/09-PROMPT_TEMPLATES.md — ready-to-use task prompts, including the
+  master "Add Fields to an Existing Page" template
+- docs/10-PHASE1_SITEMAP.md — full page inventory (33 static pages + 3
+  dynamic collections)
+- docs/11-PHASE1_TASKS.md — phase-wise build plan, start to finish
+- docs/12-PAYLOAD_SCHEMA.md — Payload collections, globals, fields
+- docs/13-INTEGRATIONS_GUIDE.md — Cloudinary, Cloudflare, Zoho, Zapier

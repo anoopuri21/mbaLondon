@@ -111,3 +111,41 @@ Updated these files to reflect the latest audit:
 - `docs/04-TECHNICAL_ARCHITECTURE.md`
 - `docs/05-CONTENT_SOURCE.md`
 - `docs/06-DEVELOPMENT_LOG.md`
+
+## Phase 1 Documentation Update (Current)
+
+Tech stack pivot from PHP to Next.js + Payload CMS + MySQL (see
+`docs/07-CHANGE_LOG.md` Change #002 for full detail). Documentation
+updated/added:
+- `PROJECT_CONTEXT.md` — corrected stale Phase 0 status (all 15 sections
+  + navbar + footer + preloader + cursor confirmed complete), repointed
+  to new Phase 1 stack and docs
+- `docs/04-TECHNICAL_ARCHITECTURE.md` — "Future Production Architecture"
+  section rewritten, PHP plan removed
+- `docs/07-CHANGE_LOG.md` — Change #002 added
+- `docs/08-AI_INSTRUCTIONS.md` — Tier 2 file-reading table and Critical
+  Rules updated for Phase 1
+- `docs/09-PROMPT_TEMPLATES.md` — Templates 4, 5, 6 added (Phase 1 build
+  task, master "add fields to a page" prompt, integration task)
+- `docs/10-PHASE1_SITEMAP.md` — NEW. Full page inventory: 33 static-
+  structure pages + 3 dynamic CMS collections
+- `docs/11-PHASE1_TASKS.md` — NEW. Phase-wise build plan, start to finish
+- `docs/12-PAYLOAD_SCHEMA.md` — NEW. Payload Collections, Globals, SEO
+  field group, FAQ repeater
+- `docs/13-INTEGRATIONS_GUIDE.md` — NEW. Cloudinary, Cloudflare, Zoho +
+  Zapier plan (includes plain-language explainer for the client)
+- `.cursorrules` — NEW, repo root. Points Cursor at the doc set above
+  automatically
+
+## Known Gaps Going Into Phase 1
+
+- Several pages listed in `docs/02-CLIENT_SOP.md` don't yet have a
+  finalized field list from the client. Phase 1 ships these with the
+  default field set defined in `docs/12-PAYLOAD_SCHEMA.md`; use the
+  master prompt in `docs/09-PROMPT_TEMPLATES.md` (Template 5) when the
+  client is ready to specify exact fields for any of these pages.
+- Exact Zoho product in use (CRM vs. Campaigns vs. both) not yet
+  confirmed — flagged in `docs/13-INTEGRATIONS_GUIDE.md`.
+- World map rendering approach (reuse existing SVG assets vs. introduce
+  a mapping library) to be decided during Phase 1.5 — see
+  `docs/13-INTEGRATIONS_GUIDE.md` section 4.

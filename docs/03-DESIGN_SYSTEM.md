@@ -30,7 +30,7 @@ Every visual decision must reinforce a high-end, international, transformative b
 
 ### Fonts
 
-- Headlines: Clash Display
+- Headlines: Roboto
 - Body: Poppins
 - Fallback: system-ui, sans-serif
 
@@ -46,30 +46,30 @@ Every visual decision must reinforce a high-end, international, transformative b
 ### Hierarchy Rules
 
 - Section labels: uppercase, tracked, gold
-- H2 headings: Clash Display, tight line height
+- H2 headings: Roboto, tight line height
 - Body: Poppins, readable line height
 - Buttons: uppercase, tracked, medium weight
 
 ## Section Background Alternation
 
-| # | Section | Background |
-|---|---------|------------|
-| 1 | Hero | DARK |
-| 2 | Numbers | LIGHT |
-| 3 | What Is Maverick | DARK |
-| 4 | Who We Are | LIGHT |
-| 5 | What We Do | DARK |
-| 6 | How We Do It | LIGHT |
-| 7 | Alumni Network | DARK |
-| 8 | Featured Programs | LIGHT |
-| 9 | Why Maverick | DARK |
-| 10 | Global Opportunities | LIGHT |
-| 11 | University Partners | DARK |
-| 12 | Faculty Insights | LIGHT |
-| 13 | Upcoming Events | DARK |
-| 14 | Video Testimonials | LIGHT |
-| 15 | Final CTA | DARK |
-| Footer | Site footer | DARK |
+| #      | Section              | Background |
+| ------ | -------------------- | ---------- |
+| 1      | Hero                 | DARK       |
+| 2      | Numbers              | LIGHT      |
+| 3      | What Is Maverick     | DARK       |
+| 4      | Who We Are           | LIGHT      |
+| 5      | What We Do           | DARK       |
+| 6      | How We Do It         | LIGHT      |
+| 7      | Alumni Network       | DARK       |
+| 8      | Featured Programs    | LIGHT      |
+| 9      | Why Maverick         | DARK       |
+| 10     | Global Opportunities | LIGHT      |
+| 11     | University Partners  | DARK       |
+| 12     | Faculty Insights     | LIGHT      |
+| 13     | Upcoming Events      | DARK       |
+| 14     | Video Testimonials   | LIGHT      |
+| 15     | Final CTA            | DARK       |
+| Footer | Site footer          | DARK       |
 
 ## Border Radius
 
@@ -90,6 +90,7 @@ Every visual decision must reinforce a high-end, international, transformative b
 ### Section Header
 
 Structure:
+
 - Section label
 - Heading with text-reveal animation
 - Subtitle paragraph

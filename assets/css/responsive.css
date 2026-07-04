@@ -36,6 +36,16 @@
   .numbers__grid {
     grid-template-columns: repeat(2, 1fr);
   }
+    .ceo__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .ceo__image-col {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 768px) {
@@ -72,9 +82,6 @@
     height: 24px;
   }
 
-  .hero__scroll-indicator {
-    display: none;
-  }
 
   .hero__subheading-text br {
     display: none;
@@ -96,6 +103,15 @@
 
   .numbers__value {
     font-size: clamp(36px, 8vw, 52px);
+  }
+    .ceo__quote {
+    font-size: 1.2rem;
+    padding-left: 1rem;
+  }
+
+  .ceo__badge {
+    left: 16px;
+    bottom: 16px;
   }
 }
 
@@ -273,9 +289,7 @@
   .hwdi__connector {
     display: none;
   }
-}
-
-@media (max-width: 480px) {
+  
   /* ===== WHAT IS MAVERICK RESPONSIVE ===== */
   .wim__heading {
     font-size: clamp(28px, 9vw, 44px);

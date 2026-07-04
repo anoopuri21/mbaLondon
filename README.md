@@ -79,7 +79,7 @@ fail to load world map data.
 - GSAP 3.12.5 + ScrollTrigger + ScrollToPlugin (CDN)
 - Lenis 1.0.42 smooth scroll (CDN)
 - D3.js 7.8.5 + TopoJSON (lazy-loaded for Section 11)
-- Clash Display + Poppins fonts (CDN)
+- Roboto + Poppins fonts (CDN)
 - No frameworks, no NPM, no build tools
 
 ## Tech Stack (Phase 1 — Production, Planned)

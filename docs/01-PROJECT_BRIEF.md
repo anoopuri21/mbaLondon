@@ -15,6 +15,7 @@ Build a fully functional homepage prototype with 15 sections, navbar, and footer
 ## Phase 1+ Roadmap (Future)
 
 After client approval:
+
 - Convert prototype to PHP-based website
 - Build custom admin panel for content management
 - Migrate existing WordPress data
@@ -61,5 +62,5 @@ After client approval:
 - GSAP 3.12.5 + ScrollTrigger + ScrollToPlugin
 - Lenis 1.0.42 smooth scroll
 - D3.js 7.8.5 + TopoJSON lazy-loaded for Section 11
-- Clash Display + Poppins fonts via CDN
+- Roboto + Poppins fonts via CDN
 - No build tools, no frameworks, no NPM

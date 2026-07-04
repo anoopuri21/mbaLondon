@@ -162,3 +162,127 @@ DELIVERABLES:
 - Confirmation it works
 
 Do NOT read all docs. Do NOT dump files. Be brief.
+
+-------------------------------------
+Template 4 — Phase 1 Build Task (Next.js / Payload / MySQL)
+
+TASK: [e.g. "Build the Programs landing pages" / "Build the
+University Partners collection"]
+
+REFER TO:
+- docs/11-PHASE1_TASKS.md (find the matching phase, follow its checklist)
+- docs/10-PHASE1_SITEMAP.md (confirm exact page/route)
+- docs/12-PAYLOAD_SCHEMA.md (exact fields to use — do not invent new ones)
+- docs/03-DESIGN_SYSTEM.md (visual rules still apply)
+
+REQUIREMENTS:
+- Reuse homepage design system, reduced animation (inner page, not homepage)
+- Mandatory SEO field group present (title, description, keywords,
+  slug, schema JSON, scripts)
+- Match the Payload field structure exactly as defined in
+  docs/12-PAYLOAD_SCHEMA.md
+
+OUTPUT:
+- Files changed/created
+- Payload config changes (collection/global + fields)
+- Route(s) added
+- Confirmation SEO fields render correctly
+- Update docs/06-DEVELOPMENT_LOG.md and docs/11-PHASE1_TASKS.md
+  checkboxes once done
+
+Do NOT dump full files. Be concise.
+-------------------------------------
+Template 5 — Add Fields to an Existing Page (MASTER PROMPT)
+
+Use this any time a page was shipped with the default/sensible field
+set (because content wasn't finalized yet) and now needs specific new
+fields added. This is the one prompt the client should reuse for every
+future "I want to add X to page Y" request — no re-planning needed.
+
+TASK: Add new fields to [page name] in Payload
+
+REFER TO:
+- docs/12-PAYLOAD_SCHEMA.md (find this page's current field list)
+- docs/10-PHASE1_SITEMAP.md (confirm this is a Global or a Collection)
+
+NEW FIELDS NEEDED:
+1. [Field name] — [Field type: text / richText / image / repeater /
+   relationship / select / etc.] — [required or optional] —
+   [1 line: what it's for]
+2. [Field name] — [Field type] — [required/optional] — [what it's for]
+3. [Add as many as needed]
+
+REQUIREMENTS:
+- Add these fields to the existing Payload config for this page
+  (do not remove or break any existing fields)
+- Mandatory SEO field group must remain untouched
+- If this page is a Collection (not a Global), confirm whether the new
+  fields apply to ALL entries or only new ones going forward
+- Update docs/12-PAYLOAD_SCHEMA.md with the new field list for this page
+- Update the corresponding Next.js component/template to render the
+  new fields, matching existing page styling (reduced animation, same
+  as other inner pages)
+
+OUTPUT:
+- Payload config diff
+- Next.js template diff
+- Updated docs/12-PAYLOAD_SCHEMA.md section for this page
+- Confirmation existing content/entries still work without errors
+
+Do NOT dump full files. Be concise.
+-------------------------------------
+
+Example Usage:
+
+TASK: Add new fields to the "CSR & Community Impact" page in Payload
+
+REFER TO:
+- docs/12-PAYLOAD_SCHEMA.md (csr Global)
+- docs/10-PHASE1_SITEMAP.md (confirms this is a Global, page #6)
+
+NEW FIELDS NEEDED:
+1. impactStats — repeater (number + label pairs, e.g. "500+ Students
+   Supported") — optional — for a stats row near the top of the page
+2. partnerOrganizations — relationship to university-partners,
+   multiple, optional — to show which partners are involved in CSR work
+
+REQUIREMENTS:
+- Add to existing `csr` Global config
+- Keep existing heroImage, richText body, gallery fields untouched
+- SEO field group untouched
+- Update docs/12-PAYLOAD_SCHEMA.md csr row with these new fields
+- Update the CSR page Next.js template to render the stats row and
+  partner logos, reduced-animation style matching other inner pages
+
+OUTPUT:
+- Payload config diff
+- Next.js template diff
+- Updated docs/12-PAYLOAD_SCHEMA.md
+- Confirmation page still renders correctly with no content yet in the
+  new fields (graceful empty state)
+
+Do NOT dump full files. Be concise.
+-------------------------------------
+Template 6 — Integration Task (Cloudinary / Cloudflare / Zoho / Zapier)
+
+TASK: [e.g. "Wire up newsletter form to Zoho via Zapier"]
+
+REFER TO:
+- docs/13-INTEGRATIONS_GUIDE.md (find the matching section, follow its
+  checklist exactly)
+
+REQUIREMENTS:
+- Follow the integration plan step-by-step as written in
+  docs/13-INTEGRATIONS_GUIDE.md — do not invent a different approach
+- If credentials/API keys are needed, use placeholders and flag clearly
+  what the client needs to provide
+- Test end-to-end before marking done
+
+OUTPUT:
+- What was configured/built
+- What still needs the client's input (API keys, account access, etc.)
+- Confirmation of a successful end-to-end test (or what's blocking it)
+- Update docs/06-DEVELOPMENT_LOG.md
+
+Do NOT dump full files. Be concise.
+-------------------------------------

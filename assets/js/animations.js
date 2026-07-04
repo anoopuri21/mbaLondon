@@ -81,11 +81,6 @@
       gsap.set(fadeUps, { opacity: 0, y: 30 });
     }
 
-    // Scroll indicator
-    if (elementExists(".hero__scroll-indicator")) {
-      gsap.set(".hero__scroll-indicator", { opacity: 0 });
-    }
-
     // =========================================================
     // Master Entrance Timeline
     // =========================================================
@@ -212,16 +207,6 @@
       );
     }
 
-    // STEP 10 â€” Scroll indicator appears (duration 0.5s)
-    if (elementExists(".hero__scroll-indicator")) {
-      heroTl.fromTo(
-        ".hero__scroll-indicator",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out", overwrite: true },
-        2.5,
-      );
-    }
-
     return heroTl;
   }
 
@@ -278,22 +263,6 @@
           trigger: "#hero",
           start: "top top",
           end: "center top",
-          scrub: true,
-        },
-      });
-    }
-
-    // ---------------------------------------------------------
-    // SCROLL ANIMATION 2 â€” Scroll indicator fades out quickly
-    // ---------------------------------------------------------
-    if (elementExists(".hero__scroll-indicator")) {
-      gsap.to(".hero__scroll-indicator", {
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#hero",
-          start: "top top",
-          end: "15% top",
           scrub: true,
         },
       });
@@ -773,7 +742,7 @@
       // =========================================================
       "(min-width: 769px)": function () {
         // Set initial states
-        gsap.set(".wim__heading-wrapper", { y: "-30vh" });
+        gsap.set(".wim__heading-wrapper", { y: "50vh" });
         gsap.set(".wim__label", { opacity: 0 });
         gsap.set(".wim__statement", { opacity: 0 });
         gsap.set(".wim__statement-text", { y: "110%" });
@@ -785,7 +754,7 @@
             trigger: "#what-is-maverick",
             start: "top top",
             end: "+=300%",
-            scrub: 1.5,
+            scrub: 1.3,
             pin: ".wim__pin-wrapper",
             anticipatePin: 1,
           },
@@ -793,7 +762,7 @@
 
         // 1. Heading moves from above to center
         wimTl.to(".wim__heading-wrapper", {
-          y: "0vh",
+          y: "-20vh",
           duration: 1,
         });
 
@@ -802,7 +771,7 @@
           ".wim__label",
           {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.3,
           },
           "-=0.3",
         );
@@ -845,9 +814,9 @@
           ".wim__final",
           {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.3,
           },
-          2.5,
+          2,
         );
 
         // 6. Entire pinned wrapper fades out at end
@@ -855,7 +824,7 @@
           ".wim__pin-wrapper",
           {
             opacity: 0,
-            duration: 0.8,
+            duration: 1,
           },
           3,
         );
@@ -1274,6 +1243,93 @@
     });
   }
 
+  function initCEOAnimations() {
+    if (!elementExists("#ceo-message")) return;
+    
+        const ceoImageAccent = document.querySelector(".ceo__image");
+        if (ceoImageAccent) {
+          gsap.fromTo(
+            ceoImageAccent,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".ceo__image-col",
+                start: "top 70%",
+                toggleActions: "play none none none",
+              },
+            },
+          );
+        }
+
+    const headingLines = document.querySelectorAll(
+      "#ceo-message .text-reveal-inner"
+    );
+
+    if (headingLines.length) {
+      gsap.fromTo(
+        headingLines,
+        { y: "110%" },
+        {
+          y: "0%",
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#ceo-message",
+            start: "top 70%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#ceo-message",
+        start: "top 75%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    tl.fromTo(
+      ".ceo__image-wrapper",
+      {
+        opacity: 0,
+        scale: 0.95
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.9,
+        ease: "power2.out"
+      }
+    );
+
+    tl.fromTo(
+      [
+        ".section-label",
+        ".ceo__quote",
+        ".ceo__body",
+        ".ceo__signature"
+      ],
+      {
+        opacity: 0,
+        y: 40
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power2.out"
+      },
+      "-=0.4"
+    );
+  }
+  
   // =========================================================
   // â”€â”€ What We Do Section Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // Three category cards with index numbers
@@ -2443,7 +2499,7 @@
   // =========================================================
 
   function initPartnersAnimations() {
-    if (!elementExists("#university-partners")) return;
+    // if (!elementExists("#university-partners")) return;
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -2466,80 +2522,80 @@
     }
 
     // ----- FOUC Prevention (only set existing elements) -----
-    const labelEl = document.querySelector(
-      "#university-partners .section-label",
-    );
-    const textRevealEls = document.querySelectorAll(
-      "#university-partners .text-reveal-inner",
-    );
-    const subtitleEl = document.querySelector(
-      "#university-partners .partners__subtitle",
-    );
-    const detailPanelEl = document.querySelector(
-      "#university-partners .partners__detail-panel",
-    );
+    // const labelEl = document.querySelector(
+    //   "#university-partners .section-label",
+    // );
+    // const textRevealEls = document.querySelectorAll(
+    //   "#university-partners .text-reveal-inner",
+    // );
+    // const subtitleEl = document.querySelector(
+    //   "#university-partners .partners__subtitle",
+    // );
+    // const detailPanelEl = document.querySelector(
+    //   "#university-partners .partners__detail-panel",
+    // );
 
-    if (labelEl) gsap.set(labelEl, { opacity: 0, y: 16 });
-    if (textRevealEls.length) gsap.set(textRevealEls, { y: "110%" });
-    if (subtitleEl) gsap.set(subtitleEl, { opacity: 0, y: 20 });
-    if (detailPanelEl) gsap.set(detailPanelEl, { opacity: 0, y: 40 });
+    // if (labelEl) gsap.set(labelEl, { opacity: 0, y: 16 });
+    // if (textRevealEls.length) gsap.set(textRevealEls, { y: "110%" });
+    // if (subtitleEl) gsap.set(subtitleEl, { opacity: 0, y: 20 });
+    // if (detailPanelEl) gsap.set(detailPanelEl, { opacity: 0, y: 40 });
 
     // ----- 1. Section Label -----
     const label = document.querySelector("#university-partners .section-label");
-    if (label) {
-      gsap.to(label, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#university-partners",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
+    // if (label) {
+    //   gsap.to(label, {
+    //     opacity: 1,
+    //     y: 0,
+    //     duration: 0.6,
+    //     ease: "power2.out",
+    //     scrollTrigger: {
+    //       trigger: "#university-partners",
+    //       start: "top 75%",
+    //       toggleActions: "play none none none",
+    //     },
+    //   });
+    // }
 
     // ----- 2. Heading Text Reveal -----
     const headings = document.querySelectorAll(
       "#university-partners .text-reveal-inner",
     );
-    if (headings.length) {
-      gsap.to(headings, {
-        y: "0%",
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "#university-partners",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
+    // if (headings.length) {
+    //   gsap.to(headings, {
+    //     y: "0%",
+    //     duration: 0.9,
+    //     stagger: 0.12,
+    //     ease: "power3.out",
+    //     scrollTrigger: {
+    //       trigger: "#university-partners",
+    //       start: "top 75%",
+    //       toggleActions: "play none none none",
+    //     },
+    //   });
+    // }
 
     // ----- 5. Pins Stagger Reveal (Desktop) -----
     // Wait briefly for JS to inject pins, then animate them
-    setTimeout(() => {
-      const pins = document.querySelectorAll(
-        "#university-partners .partners__pin",
-      );
-      if (pins.length) {
-        gsap.set(pins, { opacity: 0, scale: 0, transformOrigin: "center" });
-        gsap.to(pins, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: "#university-partners .partners__map-stage",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        });
-      }
-    }, 100);
+    // setTimeout(() => {
+    //   const pins = document.querySelectorAll(
+    //     "#university-partners .partners__pin",
+    //   );
+    //   if (pins.length) {
+    //     gsap.set(pins, { opacity: 0, scale: 0, transformOrigin: "center" });
+    //     gsap.to(pins, {
+    //       opacity: 1,
+    //       scale: 1,
+    //       duration: 0.5,
+    //       stagger: 0.06,
+    //       ease: "back.out(1.7)",
+    //       scrollTrigger: {
+    //         trigger: "#university-partners .partners__map-stage",
+    //         start: "top 70%",
+    //         toggleActions: "play none none none",
+    //       },
+    //     });
+    //   }
+    // }, 100);
 
     // ----- 6. Mobile List Items Stagger -----
     setTimeout(() => {
@@ -3120,7 +3176,6 @@
           ".text-reveal-inner",
           ".fade-up",
           ".hero__accent-bar",
-          ".hero__scroll-indicator",
           ".hero__video-fallback",
           ".hero__video",
           ".hero__overlay",
@@ -3148,6 +3203,9 @@
 
     // --- Who We Are Section ---
     initWWAAnimations();
+    
+    // --- CEO Message Section ---
+    initCEOAnimations();
 
     // --- What We Do Section ---
     initWWDAnimations();

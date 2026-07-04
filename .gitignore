@@ -20,6 +20,7 @@ node_modules/
 *.swo
 *.stackdump
 *.zip
+/Maverick images/allImg
 *~
 .DS_Store
 Thumbs.db
@@ -44,3 +45,8 @@ pnpm-debug.log*
 
 .cache/
 .turbo
+
+#Other
+/docs*
+README.md
+logo.psd

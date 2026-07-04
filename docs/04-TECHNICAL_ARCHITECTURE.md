@@ -63,6 +63,7 @@ maverick-cursor/
 ### `assets/css/main.css`
 
 Contains:
+
 - CSS custom properties
 - Reset
 - Base body styles
@@ -85,6 +86,7 @@ Contains:
 ### `assets/css/sections.css`
 
 Contains section modules for:
+
 - Alumni Network
 - Featured Programs
 - Why Maverick
@@ -101,6 +103,7 @@ Approximate line count: 2146 lines.
 ### `assets/css/responsive.css`
 
 Contains responsive rules for:
+
 - Navbar
 - Hero
 - Numbers
@@ -110,6 +113,7 @@ Contains responsive rules for:
 - How We Do It
 
 Breakpoints:
+
 - `max-width: 1024px`
 - `max-width: 768px`
 - `max-width: 480px`
@@ -129,6 +133,7 @@ Navigation interaction module for scroll state, hide/show behavior, desktop mega
 GSAP/ScrollTrigger animation module for all homepage sections.
 
 Init functions:
+
 - `initHeroAnimations`
 - `initHeroScrollAnimations`
 - `initNumbersAnimations`
@@ -158,6 +163,7 @@ Dynamic Section 14 module. Renders testimonial cards and controls video modal be
 ### `assets/js/scroll-controls.js`
 
 Shared horizontal scroll module. Adds drag, momentum, arrow controls, and button state handling for scroll rows.
+
 ## Architectural Patterns
 
 ### IIFE Pattern (All JS Modules)
@@ -165,8 +171,8 @@ Shared horizontal scroll module. Adds drag, momentum, arrow controls, and button
 All JavaScript files use Immediately Invoked Function Expression pattern:
 
 ```javascript
-(function() {
-  'use strict';
+(function () {
+  "use strict";
   // module code here
 })();
 ```
@@ -179,10 +185,10 @@ Every section animation follows this structure:
 
 ```javascript
 function initSectionNameAnimations() {
-  if (!elementExists('#section-id')) return;
+  if (!elementExists("#section-id")) return;
 
   const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
+    "(prefers-reduced-motion: reduce)",
   ).matches;
 
   if (prefersReducedMotion) {
@@ -202,16 +208,19 @@ All section init functions are called from `initAllAnimations()`.
 Used in `partners.js` for D3 library:
 
 ```javascript
-const observer = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) {
-    loadScript(D3_CDN);
-    loadScript(TOPOJSON_CDN);
-    renderMap();
-    observer.unobserve(entries[0].target);
-  }
-}, { rootMargin: '200px' });
+const observer = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting) {
+      loadScript(D3_CDN);
+      loadScript(TOPOJSON_CDN);
+      renderMap();
+      observer.unobserve(entries[0].target);
+    }
+  },
+  { rootMargin: "200px" },
+);
 
-observer.observe(document.getElementById('university-partners'));
+observer.observe(document.getElementById("university-partners"));
 ```
 
 ### Dynamic Rendering Pattern
@@ -252,7 +261,7 @@ function renderItems() {
 - Critical CSS extraction
 - Service worker for offline cache
 - Resource hints for fonts and hero video
-- Font subsetting for Clash Display and Poppins
+- Font subsetting for Roboto and Poppins
 
 ## CDN Dependencies
 
@@ -271,7 +280,7 @@ Lazy-loaded by `partners.js`:
 
 ## Font Loading
 
-- Clash Display: Fontshare CDN
+- Roboto: Google Fonts
 - Poppins: Google Fonts
 
 ## Script Order
@@ -292,77 +301,76 @@ Project scripts load with `defer`:
 - `main.js` logs an error if Lenis is missing or initialization fails.
 - `partners.js` logs errors if D3/TopoJSON/world map fetches fail.
 
-## Future Production Architecture (Phase 1)
+## Production Architecture (Phase 1) — UPDATED
+
+> **Stack change notice:** The PHP/custom-admin-panel plan previously
+> described in this section has been scrapped entirely and is no longer
+> in use. Phase 1 now uses Next.js + Payload CMS + MySQL. See the
+> full plan in the dedicated docs below — this section is kept short
+> and just points there to avoid duplicating/diverging content.
 
 ### Planned Tech Stack
 
-- PHP 8.x (custom MVC, no framework)
-- MySQL / MariaDB
-- Custom admin panel (PHP + vanilla JS)
-- Same frontend preserved from prototype (HTML/CSS/JS unchanged)
-- AI-assisted development (Cascade, Cursor, Codex, Claude)
+- **Next.js** (App Router) — frontend framework
+- **Payload CMS 3.x** — installed natively inside the Next.js app
+  (single repo, single deployment; admin panel at `/admin`)
+- **MySQL** — database, via Payload's MySQL adapter
+- **Cloudinary** — image and video hosting/delivery
+- **Cloudflare** — CDN + caching
+- **Zoho** — newsletter / CRM
+- **Zapier** — automation between site forms and Zoho
+- Same frontend visual design preserved from this prototype — 0%
+  visual/feature change in the conversion to Next.js
+- AI-assisted development (Cursor AI handles ~99% of implementation)
 
-### PHP Migration Readiness Built Into Prototype
+### Where to Find the Full Phase 1 Plan
 
-Markup conventions used throughout:
+- **docs/10-PHASE1_SITEMAP.md** — full page inventory: 33 static-structure
+  pages + 3 dynamic CMS collections (Programs, University Partners,
+  Insights)
+- **docs/11-PHASE1_TASKS.md** — phase-wise build plan, start to finish
+- **docs/12-PAYLOAD_SCHEMA.md** — Payload Collections, Globals, and the
+  mandatory SEO field group (title, description, keywords, slug, schema
+  JSON, scripts) required on every page
+- **docs/13-INTEGRATIONS_GUIDE.md** — Cloudinary, Cloudflare, and the
+  Zoho + Zapier newsletter/CRM integration plan
+
+### Conversion Rules Carried Forward From Prototype
+
+The markup conventions below (DYNAMIC START/END comments, `data-*`
+attributes for dynamic values, relative asset paths, no inline styles,
+semantic HTML) remain useful signals during the Next.js conversion —
+they mark exactly which parts of the existing HTML need to become
+Payload-driven components vs. which stay static markup.
 
 ```html
 <!-- DYNAMIC START: name -->
-...items rendered by PHP foreach...
+...items rendered dynamically from Payload data...
 <!-- DYNAMIC END: name -->
 ```
-
-Dynamic values stored in `data-*` attributes:
 
 ```html
 <span data-counter-target="5000">0</span>
 <article data-country-id="uk">...</article>
 ```
 
-All asset paths are relative (no `file://` or absolute paths).
+### Data Layer Migration Mapping (Updated for Payload)
 
-No inline styles.
+| Section           | Current Source                            | Phase 1 Source                                                                                            |
+| ----------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| 1-10, 12, 13, 15  | Static HTML                               | Payload Global (`home`) — see docs/12-PAYLOAD_SCHEMA.md                                                   |
+| 11 - Partners     | `countriesData[]` in `partners.js`        | `university-partners` Payload collection, feeding the World Map admin (docs/11-PHASE1_TASKS.md Phase 1.5) |
+| 14 - Testimonials | `testimonialsData[]` in `testimonials.js` | Testimonials field on the relevant Global/collection (video URLs via Cloudinary)                          |
+| Footer newsletter | Placeholder form                          | POST → webhook → Zapier → Zoho, see docs/13-INTEGRATIONS_GUIDE.md                                         |
+| All forms         | No backend                                | Next.js API routes → Zapier → Zoho CRM/Campaigns                                                          |
 
-Semantic HTML is used throughout (`section`, `article`, `address`, `nav`, `footer`).
+### Out of Scope / Removed
 
-### Data Layer Migration Mapping
-
-| Section | Current Source | Future PHP Source |
-|---|---|---|
-| 1-10, 12, 13, 15 | Static HTML | CMS-managed via PHP includes |
-| 11 - Partners | `countriesData[]` in `partners.js` | `partners`, `universities`, and `programs` tables |
-| 14 - Testimonials | `testimonialsData[]` in `testimonials.js` | `testimonials` table |
-| Footer newsletter | Placeholder form | POST to PHP endpoint, save to subscribers table |
-| All forms | No backend | POST to PHP endpoints with CRM integration |
-
-### Planned Admin Panel Modules
-
-- Dashboard with key metrics
-- Programs management (CRUD)
-- Partners and universities management
-- Insights/blog management
-- Events management
-- Testimonials management (video URLs)
-- Form submissions inbox
-- Newsletter subscribers
-- Site settings (contact info, social links)
-- Media library
-- User and role management
-
-### CRM and Integrations Planned
-
-- Newsletter (Mailchimp or self-hosted)
-- Lead capture forms (Apply Now, Contact, Newsletter)
-- Optional: WhatsApp Business API
-- Optional: analytics dashboard integration
-
-### Migration Approach
-
-- Frontend HTML/CSS/JS preserved unchanged from prototype
-- Add PHP partials for dynamic content injection
-- Build admin panel as separate authenticated area (`/admin/`)
-- WordPress data exported and migrated to new MySQL schema
-- Multi-language support (English + Arabic) added
+- Custom PHP admin panel — replaced entirely by Payload's built-in
+  admin UI
+- WordPress data export/migration — not applicable, this is a fresh
+  build, not a WordPress migration
+- Mailchimp — replaced by Zoho per client decision
 
 ## Browser Support
 
@@ -372,4 +380,3 @@ Semantic HTML is used throughout (`section`, `article`, `address`, `nav`, `foote
 - Mobile Safari: iOS 14+
 - Chrome Android: latest version
 - No support for Internet Explorer
-

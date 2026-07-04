@@ -4,15 +4,8 @@
    ========================================================= */
 
 .alumni {
-  background-color: #000000;
+  background-color: #ffffff;
   color: #ffffff;
-  padding: 120px 0;
-}
-
-@media (max-width: 768px) {
-  .alumni {
-    padding: 80px 0;
-  }
 }
 
 .alumni__inner {
@@ -20,6 +13,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  background-color: var(--color-mba-dark-blue);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 10px;
 }
 
 .alumni__heading {
@@ -69,7 +66,8 @@
 }
 
 .alumni__marquee-item {
-  font-family: "Clash Display", sans-serif;
+font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(2rem, 5vw, 4rem);
   color: #ffffff;
@@ -78,11 +76,13 @@
 }
 
 .alumni__marquee-item:hover {
-  color: #c9a96e;
+  color: var(--color-white);
 }
-
+.alumni__marquee-item img {
+    height: 100px;
+}
 .alumni__marquee-sep {
-  color: #c9a96e;
+  color: var(--color-white);
   font-size: clamp(2rem, 5vw, 4rem);
 }
 
@@ -161,33 +161,46 @@
 
 /* Cards styling */
 .programs__card {
-  width: 480px;
-  height: 620px;
-  background-color: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 2px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition:
-    border-color 0.4s ease,
-    transform 0.4s ease;
+    width: 300px;
+    height: 420px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: border-color 0.4s ease, transform 0.4s ease;
+    position: relative;
+}
+
+.programs__card:before {
+    content: "";
+    background: linear-gradient(0deg, #071b46ba, rgba(12, 0, 0, 0.2), rgb(14 2 82 / 30%));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 420px;
+    z-index: -1;
 }
 
 .programs__card-media {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 2px;
-  margin-bottom: 1.5rem;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
 }
 
 .programs__card:hover {
-  border-color: #c9a96e;
-  transform: translateY(-8px);
+  border-color: var(--color-mba-blue);
+  transform: translateY(-10px);
 }
 
 .programs__card-header {
@@ -198,10 +211,11 @@
 }
 
 .programs__card-index {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1rem;
-  color: #c9a96e;
+  color: var(--color-white);
 }
 
 .programs__card-badge {
@@ -210,8 +224,8 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #c9a96e;
-  border: 1px solid #c9a96e;
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
   border-radius: 2px;
   padding: 0.4rem 0.8rem;
 }
@@ -222,10 +236,11 @@
 }
 
 .programs__card-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.75rem, 3vw, 2.5rem);
-  color: #0a0a0a;
+  color: var(--color-white);
   line-height: 1.1;
 }
 
@@ -233,14 +248,14 @@
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
-  color: rgba(10, 10, 10, 0.6);
+  color: var(--color-white);
   margin-top: 0.5rem;
 }
 
 .programs__card-line {
   width: 40px;
   height: 1px;
-  background-color: #c9a96e;
+  background-color: var(--color-white);
   margin: 1.5rem 0;
 }
 
@@ -250,7 +265,7 @@
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #0a0a0a;
+  color: var(--color-white);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -261,9 +276,12 @@
   display: inline-block;
   transition: transform 0.3s ease;
 }
+.programs__card-arrow svg.inline-icon {
+color: var(--color-white)
+}
 
 .programs__card:hover .programs__card-link {
-  color: #c9a96e;
+  color: var(--color-white);
 }
 
 .programs__card:hover .programs__card-arrow {
@@ -299,30 +317,18 @@
    Maverick Business Academy â€” Bento Grid
    ========================================================= */
 
-.why {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 120px 0;
+.why .section-label span {
+    color: var(--color-mba-blue);
 }
-
-@media (max-width: 768px) {
-  .why {
-    padding: 80px 0;
-  }
-}
-
 .why__inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
 .why__header {
   margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .why__heading {
@@ -346,18 +352,16 @@
 }
 
 .why__tile {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: visible;
-  transition:
-    border-color 0.4s ease,
-    transform 0.4s ease;
-  text-align: left;
+    background: linear-gradient(225deg, var(--color-mba-blue), var(--color-mba-red));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: visible;
+    text-align: left;
+    transition: ease all 500ms;
 }
 
 .why__tile--large {
@@ -372,8 +376,7 @@
 }
 
 .why__tile:hover {
-  border-color: #c9a96e;
-  transform: scale(1.01);
+  transform: scale(1.1);
 }
 
 .why__tile-top {
@@ -386,15 +389,17 @@
   width: 40px;
   height: 40px;
   color: #ffffff;
-  transition: color 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .why__tile:hover .why__tile-icon {
-  color: #c9a96e;
+  transform: scale(1.2);
+  transition: all 0.4s ease;
 }
 
 .why__tile-index {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.4);
@@ -407,10 +412,11 @@
 }
 
 .why__tile-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
-  color: #ffffff;
+  color: var(--color-white);
   line-height: 1.2;
 }
 
@@ -424,7 +430,7 @@
 .why__tile-line {
   width: 32px;
   height: 1px;
-  background-color: #c9a96e;
+  background-color: var(--color-white);
   transition: width 0.4s ease;
 }
 
@@ -465,6 +471,127 @@
     grid-column: span 1;
     grid-row: span 1;
   }
+}
+
+/* =========================================================
+   CEO MESSAGE SECTION
+========================================================= */
+
+.ceo {
+  background: #f8f9fc;
+  position: relative;
+  overflow: hidden;
+}
+
+.ceo__grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.ceo__image-wrapper {
+  position: relative;
+}
+
+.ceo__image {
+  aspect-ratio: 4/5;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ceo__image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(43,57,121,.08),
+      rgba(236,31,36,.08)
+    );
+}
+
+.ceo__badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+
+  background: #ffffff;
+  color: #2b3979;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.ceo__heading {
+  margin-bottom: 2rem;
+}
+.ceo__content .section-label span {
+    font-size: var(--fs-body);
+    color: var(--color-black);
+}
+/* .ceo .text-reveal-inner {
+  transform: translateY(0) !important;
+}
+
+.ceo .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+} */
+.ceo__heading-line {
+  display: block;
+}
+
+.ceo__heading-line--accent {
+  color: var(--color-secondary);
+}
+
+.ceo__quote {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.4;
+  font-weight: 500;
+  margin: 0 0 2rem;
+  color: var(--color-black);
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1.5rem;
+}
+
+.ceo__body {
+  max-width: 700px;
+  color: var(--color-black);
+}
+
+.ceo__body p {
+  margin-bottom: 1.5rem;
+}
+
+.ceo__signature {
+  margin-top: 3rem;
+  color: var(--color-black);
+}
+
+.ceo__signature-line {
+  width: 80px;
+  height: 2px;
+  background: var(--color-mba-blue);
+  margin-bottom: 1rem;
+}
+
+.ceo__name {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.ceo__designation {
+  margin-top: .5rem;
+  opacity: .75;
 }
 
 /* ============================================================
@@ -555,18 +682,20 @@
 }
 
 .opportunities__column-index {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.875rem;
-  color: #c9a96e;
+  color: var(--color-mba-red);
   letter-spacing: 0.1em;
 }
 
 .opportunities__column-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  color: #0a0a0a;
+  color: var(--color-black);
   line-height: 1.1;
   margin: 0;
 }
@@ -574,7 +703,7 @@
 .opportunities__column-line {
   width: 48px;
   height: 1px;
-  background-color: #0a0a0a;
+  background-color: var(--color-black);
 }
 
 /* ----- List + Items ----- */
@@ -613,12 +742,13 @@
   top: 0;
   bottom: 0;
   width: 0;
-  background-color: #c9a96e;
+  background-color: var(--color-mba-red);
   transition: width 0.4s ease;
 }
 
 .opportunities__item-number {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.875rem;
   color: rgba(10, 10, 10, 0.4);
@@ -634,7 +764,8 @@
 }
 
 .opportunities__item-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
   color: #0a0a0a;
@@ -655,7 +786,8 @@
 }
 
 .opportunities__item-arrow {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.5rem;
   color: rgba(10, 10, 10, 0.3);
@@ -671,6 +803,7 @@
 /* ----- Hover Effects ----- */
 .opportunities__link:hover {
   padding-left: 1.5rem;
+  background: var(--color-warm-white);
 }
 
 .opportunities__link:hover::before {
@@ -678,17 +811,17 @@
 }
 
 .opportunities__link:hover .opportunities__item-number {
-  color: #c9a96e;
+  color: var(--color-mba-blue);
 }
 
 .opportunities__link:hover .opportunities__item-title {
-  color: #c9a96e;
+  color: var(--color-mba-blue);
 }
 
 .opportunities__link:hover .opportunities__item-arrow {
   opacity: 1;
   transform: translateX(0);
-  color: #c9a96e;
+  color: var(--color-mba-red);
 }
 
 /* ----- Responsive: Tablet ----- */
@@ -773,16 +906,11 @@
 .partners__header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 1.5rem;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .partners__heading {
   color: #ffffff;
-  text-align: center;
 }
 
 .partners__subtitle {
@@ -798,6 +926,10 @@
 /* ============================================================
    MAP STAGE
    ============================================================ */
+.partners__desktop{
+    display: flex;
+    gap: 50px;
+}
 
 .partners__map-stage {
   position: relative;
@@ -844,14 +976,14 @@
 }
 
 .partners__pin:focus-visible .partners__pin-dot {
-  stroke: #c9a96e;
-  stroke-width: 3;
+  stroke: #ffffff;
+  stroke-width: 2;
 }
 
 .partners__pin-dot {
-  fill: #ffffff;
-  stroke: #c9a96e;
-  stroke-width: 0;
+  fill: var(--color-mba-red);
+  stroke: #ffffff;
+  stroke-width: 2px;
   transition:
     fill 0.3s ease,
     stroke-width 0.3s ease,
@@ -859,39 +991,19 @@
 }
 
 .partners__pin:hover .partners__pin-dot {
-  fill: #c9a96e;
+  fill: #ffffff;
   stroke-width: 2;
 }
 
 .partners__pin--hub .partners__pin-dot {
-  fill: #c9a96e;
+    fill: #811d1d;
+    stroke: #ffffff;
+    stroke-width: 2px;
 }
 
 .partners__pin--active .partners__pin-dot {
-  fill: #c9a96e;
+  fill: var(--color-mba-red);
   stroke-width: 3;
-}
-
-/* Pulsing ring around hub (London) */
-.partners__pin-ring {
-  fill: none;
-  stroke: #c9a96e;
-  stroke-width: 1;
-  opacity: 0.6;
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: partners-pulse 2.5s ease-out infinite;
-}
-
-@keyframes partners-pulse {
-  0% {
-    transform: scale(0.6);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
 }
 
 /* Pin labels */
@@ -902,7 +1014,7 @@
   fill: #ffffff;
   text-anchor: middle;
   letter-spacing: 0.05em;
-  opacity: 0;
+  opacity: 0.6;
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
@@ -914,7 +1026,7 @@
 
 .partners__pin--hub .partners__pin-label {
   opacity: 1;
-  fill: #c9a96e;
+  fill: #ffffff;
   font-weight: 500;
   font-size: 12px;
 }
@@ -967,7 +1079,8 @@
 }
 
 .partners__mobile-hub {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -1018,7 +1131,8 @@
 }
 
 .partners__detail-country {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(2rem, 4vw, 3rem);
   color: #ffffff;
@@ -1037,9 +1151,12 @@
 
 /* ----- Universities Grid ----- */
 .partners__universities {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 1rem;
+    height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .partners__university-card {
@@ -1094,7 +1211,8 @@
 }
 
 .partners__university-name {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.25rem;
   color: #ffffff;
@@ -1156,7 +1274,8 @@
 }
 
 .partners__program-name {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.95rem;
   color: #ffffff;
@@ -1283,23 +1402,15 @@
 .insights__header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 1.5rem;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
-.insights__heading {
-  color: #0a0a0a;
-  text-align: center;
-}
 
 .insights__subtitle {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: rgba(10, 10, 10, 0.7);
+  color: var(--color-black);
   max-width: 640px;
   line-height: 1.6;
   margin: 0;
@@ -1386,7 +1497,8 @@
 }
 
 .insights__card-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
   color: #0a0a0a;
@@ -1519,7 +1631,7 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 2rem;
-  padding: 3rem 1rem;
+  padding: 0 1rem 3rem;
   width: max-content;
 }
 
@@ -1527,8 +1639,8 @@
 .events__card {
   flex: 0 0 380px;
   scroll-snap-align: start;
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-mba-dark-blue);
+  border: 1px solid var(--color-accent);
   border-radius: 2px;
   padding: 2rem;
   display: flex;
@@ -1561,7 +1673,8 @@
 }
 
 .events__date-day {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(3rem, 5vw, 4rem);
   color: #ffffff;
@@ -1578,7 +1691,8 @@
 }
 
 .events__card-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   color: #ffffff;
@@ -1815,7 +1929,8 @@
 }
 
 .testimonials__card-name {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.125rem;
   color: #0a0a0a;
@@ -1961,7 +2076,8 @@ body.modal-open {
 }
 
 .final-cta__heading {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 600;
   color: #ffffff;
   line-height: 1;
@@ -2146,7 +2262,10 @@ body.modal-open {
   border-color: #c9a96e;
   color: #0a0a0a;
 }
-
+#modalPlayer{
+  width: 100%;
+  height: 100%;
+}
 /* Mobile â€” hide arrow buttons (touch scroll natural) */
 @media (max-width: 768px) {
   .scroll-row__btn {
@@ -2188,7 +2307,8 @@ body.modal-open {
 }
 
 .footer__logo-text {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 600;
   font-size: 1.75rem;
   line-height: 1;
@@ -2222,7 +2342,8 @@ body.modal-open {
 }
 
 .footer__newsletter-title {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.125rem;
   color: #ffffff;
@@ -2303,7 +2424,8 @@ body.modal-open {
 
 /* ----- Column Headings ----- */
 .footer__heading {
-  font-family: "Clash Display", sans-serif;
+  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1rem;
   color: #ffffff;

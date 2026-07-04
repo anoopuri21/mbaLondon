@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Fonts -->
-  <!-- Clash Display -->
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet" />
+  <!-- Roboto -->
+  <link href="https://fonts.cdnfonts.com/css/pp-neue-montreal" rel="stylesheet">
   <!-- Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
 
-<body class="is-loading" style="background-color: #000000; color: #ffffff; overflow-x: hidden">
+<body class="is-loading">
   <!-- Preloader -->
   <div id="preloader" data-lenis-prevent></div>
 
@@ -42,8 +42,13 @@
       <!-- Logo -->
       <a href="/" class="navbar__logo" aria-label="Maverick Business Academy Home">
         <div class="navbar__logo-placeholder">
-          <span class="navbar__logo-text">MBA</span>
-          <span class="navbar__logo-tagline">MAVERICK BUSINESS ACADEMY</span>
+          <img src="assets/images/logo-white.png" alt="Maverick Business Academy Logo"
+            class="navbar__logo-img white-logo" />
+          <img src="assets/images/logo.png" alt="Maverick Business Academy Logo"
+            class="navbar__logo-img regular-logo" />
+          <!-- <span class="navbar__logo-text">MBA</span>
+          <span class="navbar__logo-tagline">MAVERICK BUSINESS ACADEMY</span> -->
+
         </div>
       </a>
 
@@ -187,7 +192,9 @@
                   <div class="mega__featured-col">
                     <span class="mega__featured-label">Featured Program</span>
                     <div class="mega__featured-card">
-                      <div class="mega__featured-img img-placeholder"></div>
+                      <div class="mega__featured-img">
+                        <img src="assets/images/homepage/mba.jpg" alt="Global MBA Program" />
+                      </div>
                       <div class="mega__featured-content">
                         <span class="mega__featured-tag">Master's Degree</span>
                         <h3 class="mega__featured-title">Global MBA</h3>
@@ -444,11 +451,6 @@
             </div>
 
             <!-- Main Headline -->
-            <!-- 
-                  Each line is wrapped separately so each line 
-                  can animate independently (slide up from below)
-                  This is the core cinematic text reveal technique
-                -->
             <h1 class="hero__headline display-text" aria-label="Transforming Learners into Global Leaders">
               <span class="hero__headline-line">
                 <span class="text-reveal-wrapper">
@@ -491,14 +493,8 @@
         </div>
       </div>
 
-      <!-- Layer 5: Scroll Indicator -->
-      <div class="hero__scroll-indicator" aria-hidden="true">
-        <div class="hero__scroll-line"></div>
-        <span class="hero__scroll-text">Scroll</span>
-      </div>
-
-      <div class="hero__bottom-fade" aria-hidden="true"></div>
     </section>
+
     <section id="numbers" class="numbers section--light section-wrapper" aria-label="Maverick by the numbers">
       <div class="container">
         <!-- Top Row: Heading + Context Text -->
@@ -512,17 +508,17 @@
             <h2 class="numbers__heading section-title">
               <span class="numbers__heading-line">
                 <span class="text-reveal-wrapper">
-                  <span class="text-reveal-inner">Impact</span>
+                  <span class="text-reveal-inner">Where Education</span>
                 </span>
               </span>
               <span class="numbers__heading-line">
                 <span class="text-reveal-wrapper">
-                  <span class="text-reveal-inner">Beyond</span>
+                  <span class="text-reveal-inner">Meets Real-World</span>
                 </span>
               </span>
-              <span class="numbers__heading-line numbers__heading-line--accent">
+              <span class="numbers__heading-line hwdi__heading-line--red">
                 <span class="text-reveal-wrapper">
-                  <span class="text-reveal-inner">Education.</span>
+                  <span class="text-reveal-inner">Growth.</span>
                 </span>
               </span>
             </h2>
@@ -555,7 +551,7 @@
         <!-- Stats Grid -->
         <div class="numbers__grid">
           <!-- Stat 1 -->
-          <div class="numbers__card fade-up" data-counter-target="5000" data-counter-suffix="+"
+          <div class="numbers__card fade-up" data-counter-target="9000" data-counter-suffix="+"
             data-counter-label="Learners Empowered">
             <div class="numbers__card-inner">
               <span class="numbers__index">01</span>
@@ -569,7 +565,7 @@
           </div>
 
           <!-- Stat 2 -->
-          <div class="numbers__card fade-up" data-counter-target="50" data-counter-suffix="+"
+          <div class="numbers__card fade-up" data-counter-target="90" data-counter-suffix="+"
             data-counter-label="Nationalities">
             <div class="numbers__card-inner">
               <span class="numbers__index">02</span>
@@ -597,8 +593,8 @@
           </div>
 
           <!-- Stat 4 -->
-          <div class="numbers__card fade-up" data-counter-target="100" data-counter-suffix="+"
-            data-counter-label="Corporate Learning Projects">
+          <div class="numbers__card fade-up" data-counter-target="80" data-counter-suffix="+"
+            data-counter-label="Corporate Trainings">
             <div class="numbers__card-inner">
               <span class="numbers__index">04</span>
               <div class="numbers__value-wrapper">
@@ -606,14 +602,14 @@
                 <span class="numbers__suffix">+</span>
               </div>
               <span class="numbers__label">
-                Corporate Learning Projects
+                Corporate Trainings
               </span>
               <div class="numbers__card-line" aria-hidden="true"></div>
             </div>
           </div>
 
           <!-- Stat 5 -->
-          <div class="numbers__card fade-up" data-counter-target="15" data-counter-suffix="+"
+          <div class="numbers__card fade-up" data-counter-target="12" data-counter-suffix="+"
             data-counter-label="Countries Represented">
             <div class="numbers__card-inner">
               <span class="numbers__index">05</span>
@@ -627,7 +623,7 @@
           </div>
 
           <!-- Stat 6 -->
-          <div class="numbers__card fade-up" data-counter-target="1000" data-counter-suffix="+"
+          <div class="numbers__card fade-up" data-counter-target="4500" data-counter-suffix="+"
             data-counter-label="Graduates">
             <div class="numbers__card-inner">
               <span class="numbers__index">06</span>
@@ -642,6 +638,7 @@
         </div>
       </div>
     </section>
+
     <section id="what-is-maverick" class="wim" aria-label="What Is Maverick">
       <div class="wim__bg" aria-hidden="true">
         <div class="wim__bg-image img-placeholder"></div>
@@ -663,7 +660,7 @@
           <div class="wim__statement" data-statement="1">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner wim__statement-text">
-                Not just degrees.
+                3,500+ masterclasses conducted
               </span>
             </span>
           </div>
@@ -671,7 +668,7 @@
           <div class="wim__statement" data-statement="2">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner wim__statement-text">
-                Not just certifications.
+                10,000+ webinars hosted
               </span>
             </span>
           </div>
@@ -679,7 +676,23 @@
           <div class="wim__statement" data-statement="3">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner wim__statement-text">
-                Not just training.
+                5,000+ Certificates awarded
+              </span>
+            </span>
+          </div>
+
+          <div class="wim__statement" data-statement="3">
+            <span class="text-reveal-wrapper">
+              <span class="text-reveal-inner wim__statement-text">
+                3,500+ industry experts
+              </span>
+            </span>
+          </div>
+
+          <div class="wim__statement" data-statement="3">
+            <span class="text-reveal-wrapper">
+              <span class="text-reveal-inner wim__statement-text">
+                10,000+ topics covered
               </span>
             </span>
           </div>
@@ -692,6 +705,7 @@
         </div>
       </div>
     </section>
+
     <section id="who-we-are" class="wwa section--light section-wrapper" aria-label="Who we are">
       <div class="container">
         <div class="wwa__grid grid-2">
@@ -707,7 +721,7 @@
                   <span class="text-reveal-inner">We Are</span>
                 </span>
               </span>
-              <span class="wwa__heading-line wwa__heading-line--accent">
+              <span class="wwa__heading-line hwdi__heading-line--red">
                 <span class="text-reveal-wrapper">
                   <span class="text-reveal-inner">Transformational.</span>
                 </span>
@@ -745,14 +759,108 @@
           <!-- Right Column: Image -->
           <div class="wwa__image-col">
             <div class="wwa__image-wrapper">
-              <div class="wwa__image img-placeholder"></div>
+              <img src="assets/images/homepage/mavrick-transform.jpg" alt="Maverick Business Academy Team"
+                class="wwa__image" />
               <div class="wwa__image-accent" aria-hidden="true"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section id="what-we-do" class="wwd section-wrapper" aria-label="What we do">
+
+    <!-- CEO MESSAGE SECTION -->
+    <section id="ceo-message" class="ceo section-wrapper section--light" aria-label="Founder and CEO Message">
+      <div class="container">
+
+        <div class="ceo__grid">
+
+          <!-- CEO IMAGE -->
+          <div class="ceo__image-col">
+            <div class="ceo__image-wrapper fade-up">
+
+              <!-- Replace with actual image later -->
+              <div class="ceo__image">
+                <img src="assets/images/mba-ceo.jpg"
+                  alt="Dr. Shaik Fazil Saleem, Founder and CEO of Maverick Business Academy" />
+              </div>
+
+              <div class="ceo__badge">
+                CEO & Founder Since 2012
+              </div>
+
+            </div>
+          </div>
+
+          <!-- CONTENT -->
+          <div class="ceo__content">
+
+            <div class="section-label fade-up">
+              <span>Leadership Message</span>
+            </div>
+
+            <h2 class="ceo__heading section-title">
+              <span class="ceo__heading-line">
+                <span class="text-reveal-wrapper">
+                  <span class="text-reveal-inner">
+                    A Message from
+                  </span>
+                </span>
+              </span>
+
+              <span class="ceo__heading-line hwdi__heading-line--red">
+                <span class="text-reveal-wrapper">
+                  <span class="text-reveal-inner">
+                    Our Founder & CEO
+                  </span>
+                </span>
+              </span>
+            </h2>
+
+            <blockquote class="ceo__quote fade-up">
+              “We do not simply deliver qualifications.
+              We create opportunities that transform lives,
+              careers, and communities.”
+            </blockquote>
+
+            <div class="ceo__body fade-up">
+
+              <p>
+                Maverick Business Academy was founded with a vision to make
+                internationally recognised education more accessible, practical,
+                and transformational for learners around the world.
+              </p>
+
+              <p>
+                Our mission goes beyond academic achievement. We focus on
+                empowering individuals with the knowledge, confidence,
+                and opportunities required to succeed in a rapidly
+                changing global environment.
+              </p>
+
+            </div>
+
+            <div class="ceo__signature fade-up">
+
+              <div class="ceo__signature-line"></div>
+
+              <h3 class="ceo__name">
+                Dr. Shaik Fazil Saleem
+              </h3>
+
+              <p class="ceo__designation">
+                Dean, Group CEO & Founder
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="what-we-do" class="wwd section-wrapper section--light" aria-label="What we do">
       <div class="container">
         <div class="wwd__header">
           <div class="wwd__header-left">
@@ -765,7 +873,7 @@
                   <span class="text-reveal-inner">Three Pillars of</span>
                 </span>
               </span>
-              <span class="wwd__heading-line wwd__heading-line--accent">
+              <span class="wwd__heading-line hwdi__heading-line--red">
                 <span class="text-reveal-wrapper">
                   <span class="text-reveal-inner">Global Education</span>
                 </span>
@@ -845,6 +953,7 @@
         </div>
       </div>
     </section>
+
     <section id="how-we-do-it" class="hwdi section--light section-wrapper" aria-label="How we do it">
       <div class="container">
         <div class="hwdi__header">
@@ -857,7 +966,7 @@
                 <span class="text-reveal-inner">A Proven</span>
               </span>
             </span>
-            <span class="hwdi__heading-line hwdi__heading-line--accent">
+            <span class="hwdi__heading-line hwdi__heading-line--red">
               <span class="text-reveal-wrapper">
                 <span class="text-reveal-inner">Three-Step Approach</span>
               </span>
@@ -924,6 +1033,7 @@
         </div>
       </div>
     </section>
+
     <section id="alumni-network" class="alumni section-wrapper section--dark" aria-label="Alumni Network">
       <div class="container alumni__inner">
         <div class="section-label">
@@ -935,7 +1045,7 @@
               <span class="text-reveal-inner">Our Alumni</span>
             </span>
           </span>
-          <span class="hwdi__heading-line hwdi__heading-line--accent">
+          <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner">Work With</span>
             </span>
@@ -945,72 +1055,79 @@
           Graduates placing at world-class organisations across aviation,
           energy, finance and government
         </p>
-      </div>
+        <div class="alumni__marquee-wrapper fade-up">
+          <!-- Row 1: Left scrolling -->
+          <div class="alumni__marquee alumni__marquee--left" data-marquee-direction="left">
+            <div class="alumni__marquee-track alumni__marquee-track--left">
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/image_2022_06_17T09_54_42_963Z-3-287x179.png.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo6lJtbf8OcQM87C1Rg-tZPPhipD6LDkw7WIGyznaoPw&s=10"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img src="https://mbalondon.org.uk/wp-content/uploads/2026/06/UKrlP-1-299x149.png" alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/logo-1-300x180-1-299x179.jpg.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/AIEA-1-299x179.jpg.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/NAFSA-1-299x179.jpg.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+            </div>
+          </div>
 
-      <div class="alumni__marquee-wrapper fade-up">
-        <!-- Row 1: Left scrolling -->
-        <div class="alumni__marquee alumni__marquee--left" data-marquee-direction="left">
-          <div class="alumni__marquee-track alumni__marquee-track--left">
-            <span class="alumni__marquee-item">Emirates</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Fly Dubai</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">ADNOC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Abu Dhabi Police</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">PwC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">EGA</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <!-- Duplicate -->
-            <span class="alumni__marquee-item">Emirates</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Fly Dubai</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">ADNOC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Abu Dhabi Police</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">PwC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">EGA</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
+          <!-- Row 2: Right scrolling -->
+          <div class="alumni__marquee alumni__marquee--right" data-marquee-direction="right">
+            <div class="alumni__marquee-track alumni__marquee-track--right">
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/image_2022_06_17T09_54_42_963Z-3-287x179.png.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo6lJtbf8OcQM87C1Rg-tZPPhipD6LDkw7WIGyznaoPw&s=10"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img src="https://mbalondon.org.uk/wp-content/uploads/2026/06/UKrlP-1-299x149.png" alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/logo-1-300x180-1-299x179.jpg.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/AIEA-1-299x179.jpg.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+              <span class="alumni__marquee-item">
+                <img
+                  src="https://mbalondon.org.uk/wp-content/uploads/al_opt_content/IMAGE/mbalondon.org.uk/wp-content/uploads/2023/11/NAFSA-1-299x179.jpg.bv.webp?bv_host=mbalondon.org.uk"
+                  alt="Partner Logo" />
+              </span>
+            </div>
           </div>
         </div>
-
-        <!-- Row 2: Right scrolling -->
-        <div class="alumni__marquee alumni__marquee--right" data-marquee-direction="right">
-          <div class="alumni__marquee-track alumni__marquee-track--right">
-            <span class="alumni__marquee-item">Emirates</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Fly Dubai</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">ADNOC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Abu Dhabi Police</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">PwC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">EGA</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <!-- Duplicate -->
-            <span class="alumni__marquee-item">Emirates</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Fly Dubai</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">ADNOC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">Abu Dhabi Police</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">PwC</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-            <span class="alumni__marquee-item">EGA</span>
-            <span class="alumni__marquee-sep" aria-hidden="true">·</span>
-          </div>
-        </div>
       </div>
+
     </section>
+
     <section id="featured-programs" class="programs section-wrapper section--light" aria-label="Featured Programs">
       <div class="container programs__inner">
         <div class="section-label">
@@ -1019,10 +1136,10 @@
         <h2 class="programs__heading section-title">
           <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Top Selling</span>
+              <span class="text-reveal-inner">Most In-Demand</span>
             </span>
           </span>
-          <span class="hwdi__heading-line hwdi__heading-line--accent">
+          <span class="hwdi__heading-line hwdi__heading-line--red">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner">Programs</span>
             </span>
@@ -1155,7 +1272,7 @@
       </div>
     </section>
 
-    <section id="why-maverick" class="why section-wrapper section--dark" aria-label="Why Maverick">
+    <section id="why-maverick" class="why section-wrapper section--light" aria-label="Why Maverick">
       <div class="container why__inner">
         <div class="why__header">
           <div class="section-label">
@@ -1167,7 +1284,7 @@
                 <span class="text-reveal-inner">Why Thousands</span>
               </span>
             </span>
-            <span class="hwdi__heading-line">
+            <span class="hwdi__heading-line hwdi__heading-line--red">
               <span class="text-reveal-wrapper">
                 <span class="text-reveal-inner">Choose Maverick</span>
               </span>
@@ -1291,6 +1408,7 @@
         </div>
       </div>
     </section>
+
     <section id="global-opportunities" class="opportunities section-wrapper section--light"
       aria-label="Global Opportunities and Pathways">
       <div class="container opportunities__inner">
@@ -1467,6 +1585,7 @@
         </div>
       </div>
     </section>
+
     <section id="university-partners" class="partners section-wrapper section--dark" aria-label="University Partners">
       <div class="container partners__inner">
         <!-- ========== HEADER ========== -->
@@ -1490,35 +1609,38 @@
             </p> -->
         </div>
 
-        <!-- ========== MAP STAGE (D3-Powered, Desktop Only) ========== -->
-        <div class="partners__map-stage" id="partnersMapStage">
-          <div class="partners__map-container" id="partnersMapContainer">
-            <!-- D3 renders SVG map here -->
-          </div>
-        </div>
-
         <!-- ========== MOBILE COUNTRY LIST ========== -->
         <div class="partners__mobile-list" id="partnersMobileList">
           <!-- Country buttons dynamically rendered by JS -->
         </div>
-
-        <!-- ========== DETAIL PANEL ========== -->
-        <div class="partners__detail-panel" id="partnersDetailPanel">
-          <div class="partners__detail-header">
-            <h3 class="partners__detail-country" id="partnersDetailCountry">
-              United Kingdom
-            </h3>
-            <span class="partners__detail-count" id="partnersDetailCount">
-              1 University
-            </span>
+        <div class="partners__desktop" id="partnersDesktop">
+          <!-- ========== MAP STAGE (D3-Powered, Desktop Only) ========== -->
+          <div class="partners__map-stage" id="partnersMapStage">
+            <div class="partners__map-container" id="partnersMapContainer">
+              <!-- D3 renders SVG map here -->
+            </div>
           </div>
 
-          <div class="partners__universities" id="partnersUniversities">
-            <!-- University cards dynamically rendered by JS -->
+
+          <!-- ========== DETAIL PANEL ========== -->
+          <div class="partners__detail-panel" id="partnersDetailPanel">
+            <div class="partners__detail-header">
+              <h3 class="partners__detail-country" id="partnersDetailCountry">
+                United Arab Emirates
+              </h3>
+              <span class="partners__detail-count" id="partnersDetailCount">
+                1 University
+              </span>
+            </div>
+
+            <div class="partners__universities" id="partnersUniversities">
+              <!-- University cards dynamically rendered by JS -->
+            </div>
           </div>
         </div>
       </div>
     </section>
+
     <section id="faculty-insights" class="insights section-wrapper section--light" aria-label="Faculty Insights">
       <div class="container insights__inner">
         <div class="insights__header">
@@ -1529,7 +1651,7 @@
                 <span class="text-reveal-inner">Insights From</span>
               </span>
             </span>
-            <span class="insights__heading-line">
+            <span class="insights__heading-line hwdi__heading-line--red">
               <span class="text-reveal-wrapper">
                 <span class="text-reveal-inner">Industry Experts</span>
               </span>
@@ -1553,20 +1675,21 @@
               <article class="insights__card fade-up">
                 <a href="/insights/ai-future-business/" class="insights__card-link">
                   <div class="insights__card-image">
-                    <img src="assets/images/universities/placeholder-logo.png" alt="Dr. Sarah Chen" loading="lazy"
-                      decoding="async" width="320" height="220" />
+                    <img
+                      src="https://cloudinary.hbs.edu/hbsit/image/fetch/q_auto,c_fill,ar_1800:1320,g_center/f_webp/https%3A%2F%2Fwww.hbs.edu%2Fctfassets%2Fpublic%2Fimages%2F2rLYvQleNGlSfVMdDVvfKg%2F2.0-doctoral-241028-RC-1800x1320.jpg"
+                      alt="Dr. Sarah Chen" loading="lazy" decoding="async" width="320" height="280" />
                   </div>
                   <div class="insights__card-body">
-                    <span class="insights__card-badge">Technology</span>
+                    <span class="insights__card-badge">PhD Programs</span>
                     <h3 class="insights__card-title">
-                      Future of AI in Business
+                      The Shortest PhD Programs in 2026 for Working Professionals
                     </h3>
-                    <div class="insights__card-meta">
+                    <!-- <div class="insights__card-meta">
                       <span>Dr. Sarah Chen, Head of Technology</span>
                       <span class="insights__card-separator" aria-hidden="true"><span
                           class="inline-icon inline-icon--dot" data-lucide="dot"></span></span>
                       <span>5 min read</span>
-                    </div>
+                    </div> -->
                     <span class="insights__card-read-more">Read More <span class="inline-icon"
                         data-lucide="move-right"></span></span>
                   </div>
@@ -1576,20 +1699,21 @@
               <article class="insights__card fade-up">
                 <a href="/insights/digital-leadership/" class="insights__card-link">
                   <div class="insights__card-image">
-                    <img src="assets/images/universities/placeholder-logo.png" alt="Prof. James Mitchell" loading="lazy"
-                      decoding="async" width="320" height="220" />
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0X-wCQuei8KpDdzg0NqAT608Y6z6SXk5-NmJy_w634lXsNzRlH_biGJns&s=10"
+                      alt="Prof. James Mitchell" loading="lazy" decoding="async" width="320" height="220" />
                   </div>
                   <div class="insights__card-body">
-                    <span class="insights__card-badge">Leadership</span>
+                    <span class="insights__card-badge">DBA Programs</span>
                     <h3 class="insights__card-title">
-                      Leadership in a Digital World
+                      Best Online DBA Programs for Leadership and Innovation
                     </h3>
-                    <div class="insights__card-meta">
+                    <!-- <div class="insights__card-meta">
                       <span>Prof. James Mitchell, Leadership Chair</span>
                       <span class="insights__card-separator" aria-hidden="true"><span
                           class="inline-icon inline-icon--dot" data-lucide="dot"></span></span>
                       <span>7 min read</span>
-                    </div>
+                    </div> -->
                     <span class="insights__card-read-more">Read More <span class="inline-icon"
                         data-lucide="move-right"></span></span>
                   </div>
@@ -1599,20 +1723,21 @@
               <article class="insights__card fade-up">
                 <a href="/insights/career-trends-2026/" class="insights__card-link">
                   <div class="insights__card-image">
-                    <img src="assets/images/universities/placeholder-logo.png" alt="Dr. Aisha Patel" loading="lazy"
-                      decoding="async" width="320" height="220" />
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3AzI_0uiYCAzBbZyOrSyyAGFdJU-wK9N_nfFLmvO3Xil-JXTSGQM_HXB-&s=10"
+                      alt="Dr. Aisha Patel" loading="lazy" decoding="async" width="320" height="220" />
                   </div>
                   <div class="insights__card-body">
-                    <span class="insights__card-badge">Career</span>
+                    <span class="insights__card-badge">Leadership</span>
                     <h3 class="insights__card-title">
-                      Career Trends in 2026
+                      MBA Leadership Development Programs for Modern Managers
                     </h3>
-                    <div class="insights__card-meta">
+                    <!-- <div class="insights__card-meta">
                       <span>Dr. Aisha Patel, Career Director</span>
                       <span class="insights__card-separator" aria-hidden="true"><span
                           class="inline-icon inline-icon--dot" data-lucide="dot"></span></span>
                       <span>4 min read</span>
-                    </div>
+                    </div> -->
                     <span class="insights__card-read-more">Read More <span class="inline-icon"
                         data-lucide="move-right"></span></span>
                   </div>
@@ -1629,6 +1754,7 @@
         </div>
       </div>
     </section>
+
     <section id="upcoming-events" class="events section-wrapper section--dark" aria-label="Upcoming Events">
       <div class="container events__inner">
         <div class="events__header">
@@ -1661,93 +1787,71 @@
             <div class="events__track">
               <!-- DYNAMIC START: event-cards -->
               <article class="events__card fade-up">
-                <span class="events__card-type">WEBINAR</span>
+                <!-- <span class="events__card-type">WEBINAR</span> -->
                 <div class="events__card-date">
-                  <span class="events__date-day">15</span>
-                  <span class="events__date-month">MAR 2026</span>
+                  <span class="events__date-day">11</span>
+                  <span class="events__date-month">OCT 2025</span>
                 </div>
-                <h3 class="events__card-title">
-                  AI Strategy for Business Leaders
-                </h3>
-                <div class="events__card-meta">
-                  <span>6:00 PM GMT</span>
-                  <span class="events__meta-separator">€¢</span>
-                  <span>Online</span>
+                <div style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 100%;    align-content: space-between;
+                ">
+                  <h3 class="events__card-title">
+                    Advanced Applied Research and Strategic Methodologies in Business and Innovation:
+                  </h3>
+                  <p class="events__card-desc">
+                    Capstone Integration & Case Symposium
+                  </p>
                 </div>
-                <p class="events__card-desc">
-                  Interactive session exploring AI implementation in modern
-                  business operations.
-                </p>
-                <a href="/events/ai-strategy-webinar/" class="events__register">
-                  Register →
-                </a>
               </article>
 
               <article class="events__card fade-up">
-                <span class="events__card-type">MASTERCLASS</span>
+                <!-- <span class="events__card-type">MASTERCLASS</span> -->
                 <div class="events__card-date">
-                  <span class="events__date-day">22</span>
-                  <span class="events__date-month">MAR 2026</span>
+                  <span class="events__date-day">18</span>
+                  <span class="events__date-month">OCT 2025</span>
                 </div>
-                <h3 class="events__card-title">
-                  Global Leadership Masterclass
-                </h3>
-                <div class="events__card-meta">
+                <div style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 100%;    align-content: space-between;
+                ">
+                  <h3 class="events__card-title">
+                    Maverick Masterclass:
+                  </h3>
+                  <!-- <div class="events__card-meta">
                   <span>10:00 AM GMT</span>
                   <span class="events__meta-separator">€¢</span>
                   <span>London Campus</span>
+                </div> -->
+                  <p class="events__card-desc">
+                    The Winner's Playbook: Turning Sales & Marketing into Market Leadership through EQ (Emotional
+                    Quotient) Strategies
+                  </p>
                 </div>
-                <p class="events__card-desc">
-                  In-person workshop with industry leaders on cross-cultural
-                  leadership.
-                </p>
-                <a href="/events/leadership-masterclass/" class="events__register">
-                  Register →
-                </a>
               </article>
 
               <article class="events__card fade-up">
-                <span class="events__card-type">GRADUATION</span>
+                <!-- <span class="events__card-type">GRADUATION</span> -->
                 <div class="events__card-date">
-                  <span class="events__date-day">05</span>
-                  <span class="events__date-month">APR 2026</span>
+                  <span class="events__date-day">22</span>
+                  <span class="events__date-month">NOV 2025</span>
                 </div>
-                <h3 class="events__card-title">
-                  Spring 2026 Graduation Ceremony
-                </h3>
-                <div class="events__card-meta">
-                  <span>2:00 PM GMT</span>
-                  <span class="events__meta-separator">€¢</span>
-                  <span>Royal Hall, London</span>
+                <div style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 100%;    align-content: space-between;
+                ">
+                  <h3 class="events__card-title">
+                    Maverick 10th Annual Graduation Ceremony
+                  </h3>
+                  <p class="events__card-desc">
+                    Maverick 10th Annual Graduation Ceremony
+                  </p>
                 </div>
-                <p class="events__card-desc">
-                  Celebrating our newest cohort of global business leaders.
-                </p>
-                <a href="/events/spring-graduation-2026/" class="events__register">
-                  Register →
-                </a>
               </article>
 
-              <article class="events__card fade-up">
-                <span class="events__card-type">CORPORATE EVENT</span>
-                <div class="events__card-date">
-                  <span class="events__date-day">18</span>
-                  <span class="events__date-month">APR 2026</span>
-                </div>
-                <h3 class="events__card-title">Industry Partners Summit</h3>
-                <div class="events__card-meta">
-                  <span>9:00 AM GMT</span>
-                  <span class="events__meta-separator">€¢</span>
-                  <span>Hybrid (London + Online)</span>
-                </div>
-                <p class="events__card-desc">
-                  Annual summit connecting alumni, faculty, and corporate
-                  partners.
-                </p>
-                <a href="/events/industry-summit/" class="events__register">
-                  Register →
-                </a>
-              </article>
               <!-- DYNAMIC END: event-cards -->
             </div>
           </div>
@@ -1759,6 +1863,7 @@
         </div>
       </div>
     </section>
+
     <section id="video-testimonials" class="testimonials section-wrapper section--light"
       aria-label="Video Testimonials">
       <div class="container testimonials__inner">
@@ -1806,12 +1911,13 @@
       <div class="testimonials__modal" id="videoModal">
         <div class="testimonials__modal-content">
           <button class="testimonials__modal-close" id="modalClose" aria-label="Close modal">
-            Ã—
+            x
           </button>
           <div id="modalPlayer"></div>
         </div>
       </div>
     </section>
+
     <section id="final-cta" class="final-cta section-wrapper section--dark" aria-label="Final Call to Action">
       <div class="container final-cta__inner">
         <div class="section-label"><span>Take The Next Step</span></div>
@@ -1837,6 +1943,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->

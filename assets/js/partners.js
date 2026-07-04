@@ -30,12 +30,32 @@
 
   const countriesData = [
     {
+      id: "uae",
+      name: "United Arab Emirates",
+      city: "Dubai",
+      lat: 25.2048,
+      lng: 55.2708,
+      isHub: true,
+      universities: [
+        {
+          name: "Dubai International Business School",
+          logo: PLACEHOLDER_LOGO,
+          country: "United Arab Emirates",
+          recognition: "KHDA Approved · UAE Accredited",
+          programs: [
+            { name: "MBA Finance", url: "/programs/mba-finance/" },
+            { name: "Master in Project Management", url: "/programs/mpm/" },
+          ],
+        },
+      ],
+    },
+    {
       id: "uk",
       name: "United Kingdom",
       city: "London",
       lat: 51.5074,
       lng: -0.1278,
-      isHub: true,
+      isHub: false,
       universities: [
         {
           name: "Maverick Business Academy",
@@ -61,41 +81,21 @@
       ],
     },
     {
-      id: "switzerland",
-      name: "Switzerland",
-      city: "Zurich",
-      lat: 47.3769,
-      lng: 8.5417,
+      id: "india",
+      name: "India",
+      city: "Delhi",
+      lat: 28.6139,
+      lng: 77.2090,
       isHub: false,
       universities: [
         {
           name: "Swiss Business School",
           logo: PLACEHOLDER_LOGO,
-          country: "Switzerland",
+          country: "India",
           recognition: "Triple Accredited · AACSB · EQUIS",
           programs: [
             { name: "Swiss Global MBA", url: "/programs/swiss-mba/" },
             { name: "Executive MBA", url: "/programs/exec-mba/" },
-          ],
-        },
-      ],
-    },
-    {
-      id: "cyprus",
-      name: "Cyprus",
-      city: "Nicosia",
-      lat: 35.1856,
-      lng: 33.3823,
-      isHub: false,
-      universities: [
-        {
-          name: "Cyprus International Business School",
-          logo: PLACEHOLDER_LOGO,
-          country: "Cyprus",
-          recognition: "EU Recognised · CySETA Member",
-          programs: [
-            { name: "European MBA", url: "/programs/euro-mba/" },
-            { name: "Master in International Business", url: "/programs/mib/" },
           ],
         },
       ],
@@ -116,48 +116,6 @@
           programs: [
             { name: "Global MBA", url: "/programs/global-mba-us/" },
             { name: "DBA", url: "/programs/dba-us/" },
-          ],
-        },
-      ],
-    },
-    {
-      id: "turks",
-      name: "Turks & Caicos",
-      city: "Providenciales",
-      lat: 21.7755,
-      lng: -71.7977,
-      isHub: false,
-      universities: [
-        {
-          name: "Atlantic Business College",
-          logo: PLACEHOLDER_LOGO,
-          country: "Turks & Caicos",
-          recognition: "Caribbean Accreditation",
-          programs: [
-            {
-              name: "BBA Hospitality Management",
-              url: "/programs/bba-hospitality/",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "uae",
-      name: "United Arab Emirates",
-      city: "Dubai",
-      lat: 25.2048,
-      lng: 55.2708,
-      isHub: false,
-      universities: [
-        {
-          name: "Dubai International Business School",
-          logo: PLACEHOLDER_LOGO,
-          country: "United Arab Emirates",
-          recognition: "KHDA Approved · UAE Accredited",
-          programs: [
-            { name: "MBA Finance", url: "/programs/mba-finance/" },
-            { name: "Master in Project Management", url: "/programs/mpm/" },
           ],
         },
       ],
@@ -201,48 +159,6 @@
           programs: [
             { name: "MBA Leadership", url: "/programs/mba-leadership/" },
             { name: "Master of Commerce", url: "/programs/master-commerce/" },
-          ],
-        },
-      ],
-    },
-    {
-      id: "hungary",
-      name: "Hungary",
-      city: "Budapest",
-      lat: 47.4979,
-      lng: 19.0402,
-      isHub: false,
-      universities: [
-        {
-          name: "Budapest School of Business",
-          logo: PLACEHOLDER_LOGO,
-          country: "Hungary",
-          recognition: "EU Accredited · Bologna Compliant",
-          programs: [
-            { name: "European Business MBA", url: "/programs/europe-mba/" },
-          ],
-        },
-      ],
-    },
-    {
-      id: "canada",
-      name: "Canada",
-      city: "Toronto",
-      lat: 43.6532,
-      lng: -79.3832,
-      isHub: false,
-      universities: [
-        {
-          name: "Toronto Business College",
-          logo: PLACEHOLDER_LOGO,
-          country: "Canada",
-          recognition: "AACSB Candidate · Provincial Recognition",
-          programs: [
-            {
-              name: "MBA Strategic Management",
-              url: "/programs/mba-strategy/",
-            },
-            { name: "Master in Finance", url: "/programs/master-finance/" },
           ],
         },
       ],
@@ -686,7 +602,7 @@
     // Static parts (render immediately)
     renderMobileList();
     setupMobileClickHandlers();
-    renderDetailPanel("uk", false);
+    renderDetailPanel("uae", false);
 
     // Map: lazy load when user scrolls near it
     setupLazyMapLoader();
