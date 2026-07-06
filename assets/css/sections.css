@@ -73,6 +73,7 @@ font-family: 'PP Neue Montreal', sans-serif;
   color: #ffffff;
   transition: color 0.3s ease;
   cursor: default;
+  width: 200px;
 }
 
 .alumni__marquee-item:hover {
@@ -80,6 +81,8 @@ font-family: 'PP Neue Montreal', sans-serif;
 }
 .alumni__marquee-item img {
     height: 100px;
+    width: 200px;
+    object-fit: contain;
 }
 .alumni__marquee-sep {
   color: var(--color-white);
@@ -559,7 +562,7 @@ color: var(--color-white)
   font-weight: 500;
   margin: 0 0 2rem;
   color: var(--color-black);
-  border-left: 3px solid var(--color-primary);
+  border-left: 3px solid var(--color-mba-red);
   padding-left: 1.5rem;
 }
 
@@ -954,8 +957,8 @@ color: var(--color-white)
 
 /* Country shapes (land masses) â€” base style */
 .partners__country {
-  fill: rgba(255, 255, 255, 0.04);
-  stroke: rgba(255, 255, 255, 0.1);
+  fill: #455A64;
+  /* stroke: rgba(143, 143, 143, 0.1); */
   stroke-width: 0.5;
   transition: fill 0.3s ease;
 }
@@ -2030,6 +2033,92 @@ body.modal-open {
   }
 }
 
+/* =========================================================
+   FAQ SECTION
+========================================================= */
+
+.faq {
+  background: #ffffff;
+}
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.faq__subtitle {
+  max-width: 420px;
+}
+
+.faq__accordion {
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.faq__item {
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.faq__question {
+  width: 100%;
+  background: transparent;
+  color: var(--color-black);
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 0;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.faq__question:hover {
+  color: var(--color-mba-red);
+}
+
+.faq__icon {
+  font-size: 1.5rem;
+  color: var(--color-mba-red);
+  transition: transform .3s ease;
+}
+.faq-img {
+    width: 80%;
+    object-fit: contain;
+    height: 100%;
+    margin-top: 50px;
+}
+.faq__answer {
+  max-height: 0;
+  overflow: hidden;
+
+  transition:
+    max-height .4s ease,
+    padding .4s ease;
+}
+
+.faq__answer p {
+  margin: 0;
+  padding-bottom: 1.5rem;
+
+  color: rgba(0,0,0,.70);
+  line-height: 1.8;
+}
+
+.faq__item.active .faq__answer {
+  max-height: 300px;
+}
+
+.faq__item.active .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__item.active .faq__question {
+  color: var(--color-mba-red);
+}
+
 /* ============================================================
    SECTION 15 â€” FINAL CTA
    Centered call-to-action with gradient. DARK theme.
@@ -2302,27 +2391,8 @@ body.modal-open {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  text-decoration: none;
-  color: #ffffff;
 }
 
-.footer__logo-text {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-size: 1.75rem;
-  line-height: 1;
-  color: #ffffff;
-}
-
-.footer__logo-tagline {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-}
 
 .footer__about {
   font-family: "Poppins", sans-serif;
@@ -2333,7 +2403,10 @@ body.modal-open {
   max-width: 380px;
   margin: 0;
 }
-
+.footer__logo-img{
+  width: 280px;
+  object-fit: contain;
+}
 /* ----- Newsletter ----- */
 .footer__newsletter {
   display: flex;

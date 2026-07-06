@@ -615,10 +615,11 @@ html.lenis body {
 }
 
 .navbar__logo-placeholder {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
 }
+
 .is-scrolled .navbar__logo-placeholder .regular-logo, .navbar__logo-placeholder .white-logo {
   display: block;
 }
@@ -1261,6 +1262,8 @@ html.lenis body {
   transition:
     opacity 0.4s ease,
     visibility 0.4s ease;
+  height: 100vh;
+  width: 100vw;
 }
 
 .navbar__mobile.is-open {

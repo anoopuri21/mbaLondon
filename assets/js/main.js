@@ -152,6 +152,33 @@
     });
   }
 
+  function initFAQAccordion() {
+
+    const items = document.querySelectorAll(".faq__item");
+
+    if (!items.length) return;
+
+    items.forEach(item => {
+
+      const button = item.querySelector(".faq__question");
+
+      button.addEventListener("click", () => {
+
+        const isActive = item.classList.contains("active");
+
+        items.forEach(faq => {
+          faq.classList.remove("active");
+        });
+
+        if (!isActive) {
+          item.classList.add("active");
+        }
+
+      });
+
+    });
+
+  }
   // =========================================================
   // INITIALIZE
   // =========================================================
@@ -168,6 +195,7 @@
 
     initLoadingState();
     initAnchorScrolling();
+    initFAQAccordion();
 
     console.log('Maverick Homepage Initialized');
   }

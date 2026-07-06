@@ -46,6 +46,10 @@
     width: 100%;
     margin: 0 auto;
   }
+  .faq__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -56,7 +60,13 @@
   .navbar__hamburger {
     display: flex;
   }
-
+  .is-scrolled .navbar__hamburger {
+    background-color: var(--color-black);
+    border-radius: 5px;
+  }
+  .navbar__logo-placeholder {
+      width: calc(100vw - 120px);
+  }
   /* ===== HERO RESPONSIVE ===== */
   .hero__headline-line {
     line-height: 1.05;
@@ -113,6 +123,11 @@
     left: 16px;
     bottom: 16px;
   }
+  .faq__question {
+    font-size: 1rem;
+    gap: 1rem;
+  }
+  .faq-img {display: none;}
 }
 
 @media (max-width: 480px) {
@@ -292,10 +307,10 @@
   
   /* ===== WHAT IS MAVERICK RESPONSIVE ===== */
   .wim__heading {
-    font-size: clamp(28px, 9vw, 44px);
+    font-size: clamp(28px, 9.5vw, 44px);
   }
 
   .wim__statement-text {
-    font-size: clamp(20px, 7vw, 32px);
+    font-size: clamp(20px, 4vw, 32px);
   }
 }
