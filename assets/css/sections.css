@@ -311,7 +311,7 @@ color: var(--color-white)
 
   .programs__card {
     min-width: 320px;
-    height: 480px;
+    max-height: 500px;
     padding: 2rem;
     scroll-snap-align: start;
   }
