@@ -39,7 +39,6 @@
       universities: [
         {
           name: "Dubai International Business School",
-          logo: PLACEHOLDER_LOGO,
           country: "United Arab Emirates",
           recognition: "KHDA Approved · UAE Accredited",
           programs: [
@@ -59,7 +58,6 @@
       universities: [
         {
           name: "Maverick Business Academy",
-          logo: PLACEHOLDER_LOGO,
           country: "United Kingdom",
           recognition: "OFS Registered · QAA Reviewed",
           programs: [
@@ -70,7 +68,6 @@
         },
         {
           name: "London Institute of Management",
-          logo: PLACEHOLDER_LOGO,
           country: "United Kingdom",
           recognition: "UK Accredited · Royal Charter",
           programs: [
@@ -90,7 +87,6 @@
       universities: [
         {
           name: "Swiss Business School",
-          logo: PLACEHOLDER_LOGO,
           country: "India",
           recognition: "Triple Accredited · AACSB · EQUIS",
           programs: [
@@ -110,7 +106,6 @@
       universities: [
         {
           name: "New York Business Institute",
-          logo: PLACEHOLDER_LOGO,
           country: "United States",
           recognition: "AACSB Accredited",
           programs: [
@@ -130,7 +125,6 @@
       universities: [
         {
           name: "Singapore Institute of Management",
-          logo: PLACEHOLDER_LOGO,
           country: "Singapore",
           recognition: "CPE Registered · EduTrust Certified",
           programs: [
@@ -153,7 +147,6 @@
       universities: [
         {
           name: "Sydney Business Academy",
-          logo: PLACEHOLDER_LOGO,
           country: "Australia",
           recognition: "TEQSA Registered",
           programs: [
@@ -442,9 +435,6 @@
         cardsHTML += `
           <article class="partners__university-card">
             <div class="partners__university-header">
-              <div class="partners__university-logo">
-                <img src="${uni.logo}" alt="${uni.name} logo" loading="lazy" decoding="async" width="160" height="80">
-              </div>
               <div class="partners__university-meta">
                 <h4 class="partners__university-name">${uni.name}</h4>
                 <span class="partners__university-country">${uni.country}</span>

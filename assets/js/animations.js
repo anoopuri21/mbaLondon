@@ -742,7 +742,7 @@
       // =========================================================
       "(min-width: 769px)": function () {
         // Set initial states
-        gsap.set(".wim__heading-wrapper", { y: "50vh" });
+        gsap.set(".wim__heading-wrapper", { y: "-30vh" });
         gsap.set(".wim__label", { opacity: 0 });
         gsap.set(".wim__statement", { opacity: 0 });
         gsap.set(".wim__statement-text", { y: "110%" });
@@ -753,8 +753,8 @@
           scrollTrigger: {
             trigger: "#what-is-maverick",
             start: "top top",
-            end: "+=300%",
-            scrub: 1.3,
+            end: "+=200%",
+            scrub: 1.1,
             pin: ".wim__pin-wrapper",
             anticipatePin: 1,
           },
@@ -762,7 +762,7 @@
 
         // 1. Heading moves from above to center
         wimTl.to(".wim__heading-wrapper", {
-          y: "-20vh",
+          y: "-10vh",
           duration: 1,
         });
 
@@ -835,7 +835,7 @@
       // =========================================================
       "(max-width: 768px)": function () {
         // Set initial states (reduced travel distance)
-        gsap.set(".wim__heading-wrapper", { y: "-20vh" });
+        gsap.set(".wim__heading-wrapper", { y: "-10vh" });
         gsap.set(".wim__label", { opacity: 0 });
         gsap.set(".wim__statement", { opacity: 0 });
         gsap.set(".wim__statement-text", { y: "110%" });
