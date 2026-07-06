@@ -763,14 +763,14 @@
         // 1. Heading moves from above to center
         wimTl.to(".wim__heading-wrapper", {
           y: "-10vh",
-          duration: 1,
+          duration: 0.8,
         });
 
         // 2. Label fades in
         wimTl.to(
           ".wim__label",
           {
-            opacity: 1,
+            opacity: 0.8,
             duration: 0.3,
           },
           "-=0.3",
@@ -856,7 +856,7 @@
         // 1. Heading moves from above to center (reduced distance)
         wimTl.to(".wim__heading-wrapper", {
           y: "0vh",
-          duration: 1,
+          duration: 0.7,
         });
 
         // 2. Label fades in
@@ -874,7 +874,7 @@
           ".wim__bg-image",
           {
             scale: 1.15,
-            duration: 1.5,
+            duration: 1,
             ease: "none",
           },
           0,
@@ -885,7 +885,7 @@
           ".wim__statement",
           {
             opacity: 1,
-            duration: 0.4,
+            duration: 0.6,
             stagger: 0.2,
           },
           0.6,
@@ -897,7 +897,7 @@
             y: "0%",
             duration: 0.6,
             stagger: 0.2,
-            ease: "power2.out",
+            ease: "none",
           },
           0.6,
         );
@@ -907,9 +907,9 @@
           ".wim__final",
           {
             opacity: 1,
-            duration: 0.4,
+            duration: 0.8,
           },
-          1.8,
+          1,
         );
 
         // 6. Entire pinned wrapper fades out at end
