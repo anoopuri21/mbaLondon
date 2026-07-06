@@ -2535,12 +2535,7 @@ html.lenis body {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.55) 45%,
-    rgba(0, 0, 0, 0.92) 100%
-  );
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 45%, rgb(7 20 68) 100%);
 }
 
 .wim__pin-wrapper {

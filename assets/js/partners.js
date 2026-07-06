@@ -318,7 +318,7 @@
           .attr("class", "partners__pin-ring")
           .attr("cx", x)
           .attr("cy", y)
-          .attr("r", 14);
+          .attr("r", 7);
       }
 
       pinGroup

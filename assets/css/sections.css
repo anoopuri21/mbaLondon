@@ -4,8 +4,25 @@
    ========================================================= */
 
 .alumni {
-  background-color: #e6e7ee;
+  background-color: #ffffff;
   color: #ffffff;
+  position: relative;
+}
+.alumni::before {
+    content: "Alumni";
+    font-family: var(--font-display);
+    position: absolute;
+    top: -8%;
+    left: auto;
+    right: -1%;
+    text-align: center;
+    font-size: 22vw;
+    font-weight: 600;
+    -webkit-text-stroke-width: 1px;
+    stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(15 41 131 / 10%);
+    stroke: rgb(15 41 131 / 10%);
+    color: transparent;
 }
 
 .alumni__inner {
@@ -16,7 +33,7 @@
     padding-top: 4rem;
     padding-bottom: 5rem;
     border-radius: 50px;
-    background: #ededed;
+    background: #eee;
     box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #fff;
 }
 
@@ -959,10 +976,10 @@ color: var(--color-white)
 
 /* Country shapes (land masses) â€” base style */
 .partners__country {
-  fill: #455A64;
-  /* stroke: rgba(143, 143, 143, 0.1); */
-  stroke-width: 0.5;
-  transition: fill 0.3s ease;
+    fill: var(--color-mba-blue);
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 0.5;
+    transition: fill 0.3s ease;
 }
 
 .partners__country:hover {
@@ -989,10 +1006,19 @@ color: var(--color-white)
   fill: var(--color-mba-red);
   stroke: #ffffff;
   stroke-width: 2px;
-  transition:
-    fill 0.3s ease,
-    stroke-width 0.3s ease,
-    r 0.3s ease;
+  transition: fill 0.3s ease, stroke-width 0.3s ease, r 0.3s ease;
+  animation: pindot 2s ease infinite;
+}
+@keyframes pindot {
+  0% {
+    r: 4px;
+  }
+  50% {
+    r: 6px;
+  }
+  100% {
+    r: 4px;
+  }
 }
 
 .partners__pin:hover .partners__pin-dot {
