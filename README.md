@@ -170,3 +170,7 @@ maverick-cursor/
 See `docs/` folder for complete project documentation including
 client SOP, design system, technical architecture, content source,
 development log, change log, AI instructions, and prompt templates.
+
+### Mongo connection string
+
+"mongodb+srv://maverick_db_user:maverick@12345@maverick.tfiivr9.mongodb.net/"

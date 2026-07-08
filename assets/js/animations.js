@@ -718,7 +718,6 @@
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    // If reduced motion: make everything visible, skip scroll animations
     if (prefersReducedMotion) {
       gsap.set(
         [
@@ -735,192 +734,260 @@
       return;
     }
 
-    // Use matchMedia for responsive animation
+    // ── Generic: jo bhi statements ho DOM mein ─────────────────
+    const statements     = gsap.utils.toArray(".wim__statement");
+    const totalStatements = statements.length;
+
     ScrollTrigger.matchMedia({
+
       // =========================================================
-      // DESKTOP (min-width: 769px) â€” Full pinned scroll
+      // DESKTOP (min-width: 769px)
       // =========================================================
       "(min-width: 769px)": function () {
-        // Set initial states
-        gsap.set(".wim__heading-wrapper", { y: "-30vh" });
-        gsap.set(".wim__label", { opacity: 0 });
-        gsap.set(".wim__statement", { opacity: 0 });
-        gsap.set(".wim__statement-text", { y: "110%" });
-        gsap.set(".wim__final", { opacity: 0 });
 
-        // Master timeline with pin
+        // ── Initial States ──────────────────────────────────────
+        gsap.set(".wim__heading-wrapper", { y: "-18vh", opacity: 0 });
+        gsap.set(".wim__label",           { opacity: 0, y: 10 });
+        gsap.set(".wim__statement",       { opacity: 0 });
+        gsap.set(".wim__statement-text",  { y: "100%" });
+        gsap.set(".wim__final",           { opacity: 0, y: 12 });
+        gsap.set(".wim__bg-image",        { scale: 1 });
+
+        // ── Phase 1: Entry → section 40% visible hote hi
+        // ────────────────────────────────────────────────────────
+        const entryTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#what-is-maverick",
+            start: "top 60%",
+            end: "top 20%",
+            scrub: 0.8,
+          },
+        });
+
+        entryTl
+          .to(".wim__heading-wrapper", {
+            y: "0vh",
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+          })
+          .to(".wim__label", {
+            opacity: 0.9,
+            y: 0,
+            duration: 0.7,
+            ease: "power2.out",
+          }, "-=0.5");
+
+        // ── Phase 2: Pinned cinematic scroll ───────────────────
+        //
+        // Timeline total = 1.0 (normalized)
+        // Positions:
+        //   0.00 → BG zoom starts
+        //   0.00 → Heading settles
+        //   0.05 → Statement 1
+        //   0.05 + gap*1 → Statement 2
+        //   ...
+        //   ~0.65 → Final line (approx, depends on count)
+        //   0.75 → Fadeout STARTS (slow)
+        //   1.00 → Fadeout ENDS = timeline end = pin release
+        //
+        // Iska matlab: FIXED_TOTAL = 1.0
+        // Sab positions is 0→1 range mein fit karni hai
+        // ────────────────────────────────────────────────────────
+
+        const FIXED_TOTAL    = 1.0;   // normalized timeline length
+        const STMT_START     = 0.05;  // statements kahan se shuru
+        const STMT_ZONE_END  = 0.65;  // statements kahan khatam (before final)
+        const FINAL_POS      = 0.68;  // final line position
+        const FADEOUT_START  = 0.75;  // fadeout kahan se shuru ← 75%
+        const FADEOUT_DUR    = 0.25;  // 0.75 + 0.25 = 1.0 ← 100% pe complete
+
+        // Statement gap dynamically calculate karo
+        // Available zone: STMT_START → STMT_ZONE_END
+        const stmtZone = STMT_ZONE_END - STMT_START;
+        const STMT_GAP = totalStatements > 1
+          ? stmtZone / (totalStatements - 1)
+          : 0;
+
+        // Scroll end: fixed 130vh
+        // Kyunki pin release = fadeout complete pe hogi
+        // Jo timeline ke 1.0 pe hogi
         const wimTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#what-is-maverick",
             start: "top top",
-            end: "+=200%",
-            scrub: 1.1,
+            end: "+=150%",            // ✅ fixed, not dynamic
+            scrub: 1,                 // smooth scrub
             pin: ".wim__pin-wrapper",
-            anticipatePin: 1,
+            anticipatePin: .80,
+            // ✅ pinSpacing handles extra space automatically
+            pinSpacing: true,
           },
         });
 
-        // 1. Heading moves from above to center
+        // BG Zoom — entire scroll duration
+        wimTl.to(".wim__bg-image", {
+          scale: 1.12,
+          duration: FIXED_TOTAL,
+          ease: "none",
+        }, 0);
+
+        // Heading subtle settle
         wimTl.to(".wim__heading-wrapper", {
-          y: "-10vh",
-          duration: 0.8,
+          y: "-4vh",
+          duration: 0.3,
+          ease: "power1.inOut",
+        }, 0);
+
+        // ── Statements: Generic loop ──────────────────────────
+        statements.forEach((statement, index) => {
+          const stmtText = statement.querySelector(".wim__statement-text");
+          const pos      = STMT_START + index * STMT_GAP;
+
+          wimTl.to(statement, {
+            opacity: 1,
+            duration: 0.15,
+            ease: "power2.out",
+          }, pos);
+
+          if (stmtText) {
+            wimTl.to(stmtText, {
+              y: "0%",
+              duration: 0.18,
+              ease: "power3.out",
+            }, pos);
+          }
         });
 
-        // 2. Label fades in
-        wimTl.to(
-          ".wim__label",
-          {
-            opacity: 0.8,
-            duration: 0.3,
-          },
-          "-=0.3",
-        );
+        // ── Final Line ────────────────────────────────────────
+        wimTl.to(".wim__final", {
+          opacity: 1,
+          y: 0,
+          duration: 0.08,
+          ease: "power2.out",
+        }, FINAL_POS);
 
-        // 3. Background image slowly zooms in (throughout middle)
-        wimTl.to(
-          ".wim__bg-image",
-          {
-            scale: 1.15,
-            duration: 2,
-            ease: "none",
-          },
-          0,
-        );
-
-        // 4. Three statements appear one by one
-        wimTl.to(
-          ".wim__statement",
-          {
-            opacity: 1,
-            duration: 0.5,
-            stagger: 0.3,
-          },
-          0.8,
-        );
-
-        wimTl.to(
-          ".wim__statement-text",
-          {
-            y: "0%",
-            duration: 0.8,
-            stagger: 0.3,
-            ease: "power2.out",
-          },
-          0.8,
-        );
-
-        // 5. Final line fades in
-        wimTl.to(
-          ".wim__final",
-          {
-            opacity: 1,
-            duration: 0.3,
-          },
-          2,
-        );
-
-        // 6. Entire pinned wrapper fades out at end
-        wimTl.to(
-          ".wim__pin-wrapper",
-          {
-            opacity: 0,
-            duration: 1,
-          },
-          3,
-        );
+        // ── Fadeout: 75% scroll pe shuru, 100% pe complete ───
+        // Jab tak section viewport mein hai,
+        // text 100% hide nahi hoga
+        wimTl.to(".wim__pin-wrapper", {
+          opacity: 0,
+          duration: FADEOUT_DUR,      // 0.25 units = last 25% of scroll
+          ease: "power1.inOut",       // smooth, gradual
+        }, FADEOUT_START);            // starts at 75% of total scroll
       },
 
       // =========================================================
-      // MOBILE (max-width: 768px) â€” Compressed pinned scroll
+      // MOBILE (max-width: 768px)
       // =========================================================
       "(max-width: 768px)": function () {
-        // Set initial states (reduced travel distance)
-        gsap.set(".wim__heading-wrapper", { y: "-10vh" });
-        gsap.set(".wim__label", { opacity: 0 });
-        gsap.set(".wim__statement", { opacity: 0 });
-        gsap.set(".wim__statement-text", { y: "110%" });
-        gsap.set(".wim__final", { opacity: 0 });
 
-        // Master timeline with pin (shorter distance)
+        // ── Initial States ──────────────────────────────────────
+        gsap.set(".wim__heading-wrapper", { y: "-8vh", opacity: 0 });
+        gsap.set(".wim__label",           { opacity: 0, y: 8 });
+        gsap.set(".wim__statement",       { opacity: 0 });
+        gsap.set(".wim__statement-text",  { y: "100%" });
+        gsap.set(".wim__final",           { opacity: 0, y: 10 });
+        gsap.set(".wim__bg-image",        { scale: 1 });
+
+        // ── Phase 1: Entry ─────────────────────────────────────
+        const entryTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#what-is-maverick",
+            start: "top 60%",
+            end: "top 15%",
+            scrub: 0.7,
+          },
+        });
+
+        entryTl
+          .to(".wim__heading-wrapper", {
+            y: "0vh",
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+          })
+          .to(".wim__label", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          }, "-=0.4");
+
+        // ── Phase 2: Pinned scroll ─────────────────────────────
+        // Same normalized 0→1 approach for mobile
+        const FIXED_TOTAL    = 1.0;
+        const STMT_START     = 0.05;
+        const STMT_ZONE_END  = 0.62;
+        const FINAL_POS      = 0.66;
+        const FADEOUT_START  = 0.75;
+        const FADEOUT_DUR    = 0.25;
+
+        const stmtZone = STMT_ZONE_END - STMT_START;
+        const STMT_GAP = totalStatements > 1
+          ? stmtZone / (totalStatements - 1)
+          : 0;
+
         const wimTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#what-is-maverick",
             start: "top top",
-            end: "+=200%",
-            scrub: 1.5,
+            end: "+=120%",            // mobile mein thoda kam
+            scrub: 1,
             pin: ".wim__pin-wrapper",
             anticipatePin: 1,
+            pinSpacing: true,
           },
         });
 
-        // 1. Heading moves from above to center (reduced distance)
+        // BG Zoom
+        wimTl.to(".wim__bg-image", {
+          scale: 1.1,
+          duration: FIXED_TOTAL,
+          ease: "none",
+        }, 0);
+
+        // Heading settle
         wimTl.to(".wim__heading-wrapper", {
-          y: "0vh",
-          duration: 0.7,
+          y: "-2vh",
+          duration: 0.3,
+          ease: "power1.inOut",
+        }, 0);
+
+        // ── Statements: Generic loop (same logic) ─────────────
+        statements.forEach((statement, index) => {
+          const stmtText = statement.querySelector(".wim__statement-text");
+          const pos      = STMT_START + index * STMT_GAP;
+
+          wimTl.to(statement, {
+            opacity: 1,
+            duration: 0.14,
+            ease: "power2.out",
+          }, pos);
+
+          if (stmtText) {
+            wimTl.to(stmtText, {
+              y: "0%",
+              duration: 0.16,
+              ease: "power3.out",
+            }, pos);
+          }
         });
 
-        // 2. Label fades in
-        wimTl.to(
-          ".wim__label",
-          {
-            opacity: 1,
-            duration: 0.5,
-          },
-          "-=0.3",
-        );
+        // ── Final Line ────────────────────────────────────────
+        wimTl.to(".wim__final", {
+          opacity: 1,
+          y: 0,
+          duration: 0.08,
+          ease: "power2.out",
+        }, FINAL_POS);
 
-        // 3. Background image slowly zooms in
-        wimTl.to(
-          ".wim__bg-image",
-          {
-            scale: 1.15,
-            duration: 1,
-            ease: "none",
-          },
-          0,
-        );
-
-        // 4. Three statements appear one by one (compressed timing)
-        wimTl.to(
-          ".wim__statement",
-          {
-            opacity: 1,
-            duration: 0.6,
-            stagger: 0.2,
-          },
-          0.6,
-        );
-
-        wimTl.to(
-          ".wim__statement-text",
-          {
-            y: "0%",
-            duration: 0.6,
-            stagger: 0.2,
-            ease: "none",
-          },
-          0.6,
-        );
-
-        // 5. Final line fades in
-        wimTl.to(
-          ".wim__final",
-          {
-            opacity: 1,
-            duration: 0.8,
-          },
-          1,
-        );
-
-        // 6. Entire pinned wrapper fades out at end
-        wimTl.to(
-          ".wim__pin-wrapper",
-          {
-            opacity: 0,
-            duration: 0.6,
-          },
-          2.2,
-        );
+        // ── Fadeout: 75% → 100% scroll ───────────────────────
+        wimTl.to(".wim__pin-wrapper", {
+          opacity: 0,
+          duration: FADEOUT_DUR,
+          ease: "power1.inOut",
+        }, FADEOUT_START);
       },
     });
   }
@@ -2137,11 +2204,11 @@
     if (headings.length) {
       gsap.fromTo(
         headings,
-        { y: "110%" },
+        { y: "100%" },
         {
           y: "0%",
           duration: 0.9,
-          stagger: 0.12,
+          stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: "#featured-programs",
@@ -3161,6 +3228,434 @@
       });
     }
   }
+
+  // =========================================================
+  // â”€â”€ Accreditations, Partnerships & Recognitions Section Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Infinite logo slider + hover effects + scroll animations
+  // =========================================================
+
+  function initAccreditationsAnimations() {
+    if (!elementExists("#accreditations")) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // If reduced motion: make everything visible, skip slider animation
+    if (prefersReducedMotion) {
+      gsap.set(
+        [
+          ".accreditations__header",
+          ".accreditations__badges",
+          ".accred-slider-track .accred-card",
+          ".accreditations__trust",
+        ],
+        { clearProps: "all", opacity: 1 },
+      );
+      return;
+    }
+
+    // Initialize all accreditations animations
+    initAccredSlider();
+    initAccredScrollAnimations();
+  }
+
+  // ----- Infinite Logo Slider -----
+  function initAccredSlider() {
+    const sliderTrack = document.querySelector(".accred-slider-track");
+    if (!sliderTrack) return;
+
+    const cards = sliderTrack.querySelectorAll(".accred-card");
+    if (cards.length === 0) return;
+
+    // Clone cards for seamless infinite loop
+    cards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      sliderTrack.appendChild(clone);
+    });
+
+    // Set will-change for performance
+    sliderTrack.style.willChange = "transform";
+
+    // Create infinite scroll animation
+    const sliderTl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
+
+    // Calculate total width for seamless loop
+    const totalWidth = sliderTrack.scrollWidth / 2;
+
+    // Animate from 0 to -totalWidth (left to right movement)
+    sliderTl.to(sliderTrack, {
+      x: -totalWidth,
+      duration: 50,
+      ease: "none",
+    });
+
+    // Pause on hover
+    const sliderWrapper = document.querySelector(".accred-slider-wrapper");
+    if (sliderWrapper) {
+      sliderWrapper.addEventListener("mouseenter", () => {
+        sliderTl.pause();
+      });
+
+      sliderWrapper.addEventListener("mouseleave", () => {
+        sliderTl.play();
+      });
+    }
+
+    // Debounce resize handler
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        sliderTl.kill();
+        initAccredSlider();
+      }, 250);
+    });
+  }
+
+  // ----- Scroll Trigger Animations -----
+  function initAccredScrollAnimations() {
+    const accredSection = document.querySelector("#accreditations");
+    if (!accredSection) return;
+
+    // 1. Section label fades in
+    const sectionLabel = accredSection.querySelector(".section-label");
+    if (sectionLabel) {
+      gsap.fromTo(
+        sectionLabel,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#accreditations",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 2. Heading fades in
+    const heading = accredSection.querySelector(".accreditations__heading");
+    if (heading) {
+      gsap.fromTo(
+        heading,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#accreditations",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 3. Subheading fades in
+    const subheading = accredSection.querySelector(".accreditations__subheading");
+    if (subheading) {
+      gsap.fromTo(
+        subheading,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#accreditations",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 4. Badges appear with stagger effect
+    const badges = document.querySelectorAll(".accreditations__badges");
+    if (badges.length) {
+      gsap.fromTo(
+        badges,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#accreditations",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 5. Cards scale up from 0.9 to 1.0
+    const cards = document.querySelectorAll(".accred-slider-track .accred-card");
+    if (cards.length) {
+      gsap.fromTo(
+        cards,
+        { scale: 0.9, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.05,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#accreditations",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 6. Trust statement fades in
+    const trust = document.querySelector(".accreditations__trust");
+    if (trust) {
+      gsap.fromTo(
+        trust,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#accreditations",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+  }
+
+  // =========================================================
+  // â”€â”€ Network / Alumni Section Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â€
+  // Infinite company logo slider + hover effects + scroll animations
+  // =========================================================
+
+  function initNetworkAnimations() {
+    if (!elementExists("#alumni-network")) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // If reduced motion: make everything visible, skip slider animation
+    if (prefersReducedMotion) {
+      gsap.set(
+        [
+          ".network__header",
+          ".network-slider-track .network-card",
+          ".network__trust",
+        ],
+        { clearProps: "all", opacity: 1 },
+      );
+      return;
+    }
+
+    // Initialize all network animations
+    initNetworkSlider();
+    initNetworkScrollAnimations();
+  }
+
+  // ----- Infinite Logo Slider -----
+  function initNetworkSlider() {
+    const sliderTrack = document.querySelector(".network-slider-track");
+    if (!sliderTrack) return;
+
+    const cards = sliderTrack.querySelectorAll(".network-card");
+    if (cards.length === 0) return;
+
+    // Clone cards for seamless infinite loop
+    cards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      sliderTrack.appendChild(clone);
+    });
+
+    // Set will-change for performance
+    sliderTrack.style.willChange = "transform";
+
+    // Create infinite scroll animation
+    const sliderTl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
+
+    // Calculate total width for seamless loop
+    const totalWidth = sliderTrack.scrollWidth / 2;
+
+    // Animate from 0 to -totalWidth (left to right movement)
+    sliderTl.to(sliderTrack, {
+      x: -totalWidth,
+      duration: 50,
+      ease: "none",
+    });
+
+    // Pause on hover
+    const sliderWrapper = document.querySelector(".network-slider-wrapper");
+    if (sliderWrapper) {
+      sliderWrapper.addEventListener("mouseenter", () => {
+        sliderTl.pause();
+      });
+
+      sliderWrapper.addEventListener("mouseleave", () => {
+        sliderTl.play();
+      });
+    }
+
+    // Debounce resize handler
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        sliderTl.kill();
+        initNetworkSlider();
+      }, 250);
+    });
+  }
+
+  // ----- Scroll Trigger Animations -----
+  function initNetworkScrollAnimations() {
+    const networkSection = document.querySelector("#alumni-network");
+    if (!networkSection) return;
+
+    // 1. Section label fades in
+    const sectionLabel = networkSection.querySelector(".section-label");
+    if (sectionLabel) {
+      gsap.fromTo(
+        sectionLabel,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#alumni-network",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 2. Heading fades in
+    const heading = networkSection.querySelector(".network__heading");
+    if (heading) {
+      gsap.fromTo(
+        heading,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#alumni-network",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 3. Subheading fades in
+    const subheading = networkSection.querySelector(".network__subheading");
+    if (subheading) {
+      gsap.fromTo(
+        subheading,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#alumni-network",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 4. Description fades in
+    const description = networkSection.querySelector(".network__description");
+    if (description) {
+      gsap.fromTo(
+        description,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#alumni-network",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 5. Cards scale up from 0.9 to 1.0
+    const cards = document.querySelectorAll(".network-slider-track .network-card");
+    if (cards.length) {
+      gsap.fromTo(
+        cards,
+        { scale: 0.9, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.05,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#alumni-network",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+
+    // 6. Trust statement fades in
+    const trust = document.querySelector(".network__trust");
+    if (trust) {
+      gsap.fromTo(
+        trust,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#alumni-network",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
+  }
+
   function initAllAnimations() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -3242,6 +3737,12 @@
 
     // --- Footer ---
     initFooterAnimations();
+
+    // --- Accreditations, Partnerships & Recognitions Section ---
+    initAccreditationsAnimations();
+
+    // --- Network / Alumni Section ---
+    initNetworkAnimations();
 
     // Force ScrollTrigger to recalculate after all triggers are created
     if (typeof ScrollTrigger !== "undefined") {
