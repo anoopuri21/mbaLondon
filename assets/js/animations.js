@@ -871,286 +871,275 @@
   // Cinematic pinned scroll storytelling
   // =========================================================
 
-  function initWIMAnimations() {
-    if (!elementExists("#what-is-maverick")) return;
+function initWIMAnimations() {
+  // ── Guard ──────────────────────────────────────────────────
+  const section = document.querySelector("#what-is-maverick");
+  if (!section) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+  // ── Element References ─────────────────────────────────────
+  const pinWrapper     = section.querySelector(".wim__pin-wrapper");
+  const headingWrapper = section.querySelector(".wim__heading-wrapper");
+  const label          = section.querySelector(".wim__label");
+  const bgImage        = section.querySelector(".wim__bg-image");
+  const finalEl        = section.querySelector(".wim__final");
+  const statements     = gsap.utils.toArray(
+                           section.querySelectorAll(".wim__statement")
+                         );
+  const totalStatements = statements.length;
 
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          ".wim__heading-wrapper",
-          ".wim__label",
-          ".wim__statement",
-          ".wim__statement-text",
-          ".wim__final",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set(".wim__heading-wrapper", { y: 0 });
-      gsap.set(".wim__statement-text", { y: "0%" });
-      return;
-    }
-
-    // ── Generic: jo bhi statements ho DOM mein ─────────────────
-    const statements     = gsap.utils.toArray(".wim__statement");
-    const totalStatements = statements.length;
-
-    ScrollTrigger.matchMedia({
-
-      // =========================================================
-      // DESKTOP (min-width: 769px)
-      // =========================================================
-      "(min-width: 769px)": function () {
-
-        // ── Initial States ──────────────────────────────────────
-        gsap.set(".wim__heading-wrapper", { y: "-18vh", opacity: 0 });
-        gsap.set(".wim__label",           { opacity: 0, y: 10 });
-        gsap.set(".wim__statement",       { opacity: 0 });
-        gsap.set(".wim__statement-text",  { y: "100%" });
-        gsap.set(".wim__final",           { opacity: 0, y: 12 });
-        gsap.set(".wim__bg-image",        { scale: 1 });
-
-        // ── Phase 1: Entry → section 40% visible hote hi
-        // ────────────────────────────────────────────────────────
-        const entryTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#what-is-maverick",
-            start: "top 60%",
-            end: "top 20%",
-            scrub: 0.8,
-          },
-        });
-
-        entryTl
-          .to(".wim__heading-wrapper", {
-            y: "0vh",
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-          })
-          .to(".wim__label", {
-            opacity: 0.9,
-            y: 0,
-            duration: 0.7,
-            ease: "power2.out",
-          }, "-=0.5");
-
-        // ── Phase 2: Pinned cinematic scroll ───────────────────
-        //
-        // Timeline total = 1.0 (normalized)
-        // Positions:
-        //   0.00 → BG zoom starts
-        //   0.00 → Heading settles
-        //   0.05 → Statement 1
-        //   0.05 + gap*1 → Statement 2
-        //   ...
-        //   ~0.65 → Final line (approx, depends on count)
-        //   0.75 → Fadeout STARTS (slow)
-        //   1.00 → Fadeout ENDS = timeline end = pin release
-        //
-        // Iska matlab: FIXED_TOTAL = 1.0
-        // Sab positions is 0→1 range mein fit karni hai
-        // ────────────────────────────────────────────────────────
-
-        const FIXED_TOTAL    = 1.0;   // normalized timeline length
-        const STMT_START     = 0.05;  // statements kahan se shuru
-        const STMT_ZONE_END  = 0.65;  // statements kahan khatam (before final)
-        const FINAL_POS      = 0.68;  // final line position
-        const FADEOUT_START  = 0.75;  // fadeout kahan se shuru ← 75%
-        const FADEOUT_DUR    = 0.25;  // 0.75 + 0.25 = 1.0 ← 100% pe complete
-
-        // Statement gap dynamically calculate karo
-        // Available zone: STMT_START → STMT_ZONE_END
-        const stmtZone = STMT_ZONE_END - STMT_START;
-        const STMT_GAP = totalStatements > 1
-          ? stmtZone / (totalStatements - 1)
-          : 0;
-
-        // Scroll end: fixed 130vh
-        // Kyunki pin release = fadeout complete pe hogi
-        // Jo timeline ke 1.0 pe hogi
-        const wimTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#what-is-maverick",
-            start: "top top",
-            end: "+=150%",            // ✅ fixed, not dynamic
-            scrub: 1,                 // smooth scrub
-            pin: ".wim__pin-wrapper",
-            anticipatePin: .80,
-            // ✅ pinSpacing handles extra space automatically
-            pinSpacing: true,
-          },
-        });
-
-        // BG Zoom — entire scroll duration
-        wimTl.to(".wim__bg-image", {
-          scale: 1.12,
-          duration: FIXED_TOTAL,
-          ease: "none",
-        }, 0);
-
-        // Heading subtle settle
-        wimTl.to(".wim__heading-wrapper", {
-          y: "-4vh",
-          duration: 0.3,
-          ease: "power1.inOut",
-        }, 0);
-
-        // ── Statements: Generic loop ──────────────────────────
-        statements.forEach((statement, index) => {
-          const stmtText = statement.querySelector(".wim__statement-text");
-          const pos      = STMT_START + index * STMT_GAP;
-
-          wimTl.to(statement, {
-            opacity: 1,
-            duration: 0.15,
-            ease: "power2.out",
-          }, pos);
-
-          if (stmtText) {
-            wimTl.to(stmtText, {
-              y: "0%",
-              duration: 0.18,
-              ease: "power3.out",
-            }, pos);
-          }
-        });
-
-        // ── Final Line ────────────────────────────────────────
-        wimTl.to(".wim__final", {
-          opacity: 1,
-          y: 0,
-          duration: 0.08,
-          ease: "power2.out",
-        }, FINAL_POS);
-
-        // ── Fadeout: 75% scroll pe shuru, 100% pe complete ───
-        // Jab tak section viewport mein hai,
-        // text 100% hide nahi hoga
-        wimTl.to(".wim__pin-wrapper", {
-          opacity: 0,
-          duration: FADEOUT_DUR,      // 0.25 units = last 25% of scroll
-          ease: "power1.inOut",       // smooth, gradual
-        }, FADEOUT_START);            // starts at 75% of total scroll
-      },
-
-      // =========================================================
-      // MOBILE (max-width: 768px)
-      // =========================================================
-      "(max-width: 768px)": function () {
-
-        // ── Initial States ──────────────────────────────────────
-        gsap.set(".wim__heading-wrapper", { y: "-8vh", opacity: 0 });
-        gsap.set(".wim__label",           { opacity: 0, y: 8 });
-        gsap.set(".wim__statement",       { opacity: 0 });
-        gsap.set(".wim__statement-text",  { y: "100%" });
-        gsap.set(".wim__final",           { opacity: 0, y: 10 });
-        gsap.set(".wim__bg-image",        { scale: 1 });
-
-        // ── Phase 1: Entry ─────────────────────────────────────
-        const entryTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#what-is-maverick",
-            start: "top 60%",
-            end: "top 15%",
-            scrub: 0.7,
-          },
-        });
-
-        entryTl
-          .to(".wim__heading-wrapper", {
-            y: "0vh",
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          })
-          .to(".wim__label", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          }, "-=0.4");
-
-        // ── Phase 2: Pinned scroll ─────────────────────────────
-        // Same normalized 0→1 approach for mobile
-        const FIXED_TOTAL    = 1.0;
-        const STMT_START     = 0.05;
-        const STMT_ZONE_END  = 0.62;
-        const FINAL_POS      = 0.66;
-        const FADEOUT_START  = 0.75;
-        const FADEOUT_DUR    = 0.25;
-
-        const stmtZone = STMT_ZONE_END - STMT_START;
-        const STMT_GAP = totalStatements > 1
-          ? stmtZone / (totalStatements - 1)
-          : 0;
-
-        const wimTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#what-is-maverick",
-            start: "top top",
-            end: "+=120%",            // mobile mein thoda kam
-            scrub: 1,
-            pin: ".wim__pin-wrapper",
-            anticipatePin: 1,
-            pinSpacing: true,
-          },
-        });
-
-        // BG Zoom
-        wimTl.to(".wim__bg-image", {
-          scale: 1.1,
-          duration: FIXED_TOTAL,
-          ease: "none",
-        }, 0);
-
-        // Heading settle
-        wimTl.to(".wim__heading-wrapper", {
-          y: "-2vh",
-          duration: 0.3,
-          ease: "power1.inOut",
-        }, 0);
-
-        // ── Statements: Generic loop (same logic) ─────────────
-        statements.forEach((statement, index) => {
-          const stmtText = statement.querySelector(".wim__statement-text");
-          const pos      = STMT_START + index * STMT_GAP;
-
-          wimTl.to(statement, {
-            opacity: 1,
-            duration: 0.14,
-            ease: "power2.out",
-          }, pos);
-
-          if (stmtText) {
-            wimTl.to(stmtText, {
-              y: "0%",
-              duration: 0.16,
-              ease: "power3.out",
-            }, pos);
-          }
-        });
-
-        // ── Final Line ────────────────────────────────────────
-        wimTl.to(".wim__final", {
-          opacity: 1,
-          y: 0,
-          duration: 0.08,
-          ease: "power2.out",
-        }, FINAL_POS);
-
-        // ── Fadeout: 75% → 100% scroll ───────────────────────
-        wimTl.to(".wim__pin-wrapper", {
-          opacity: 0,
-          duration: FADEOUT_DUR,
-          ease: "power1.inOut",
-        }, FADEOUT_START);
-      },
-    });
+  // ── Bail early if critical elements missing ────────────────
+  if (!pinWrapper || !headingWrapper || totalStatements === 0) {
+    console.warn("WIM: Required elements not found, skipping animations.");
+    return;
   }
+
+  // ── Kill any stale ScrollTriggers for this section ─────────
+  ScrollTrigger.getAll().forEach((st) => {
+    if (st.trigger === section) st.kill();
+  });
+
+  // ── Reduced Motion: show everything, no animation ─────────
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion) {
+    gsap.set([headingWrapper, label, finalEl, pinWrapper], {
+      clearProps: "all",
+      opacity: 1,
+      y: 0,
+    });
+    gsap.set(statements, { clearProps: "all", opacity: 1 });
+    statements.forEach((stmt) => {
+      const txt = stmt.querySelector(".wim__statement-text");
+      if (txt) gsap.set(txt, { clearProps: "all", y: "0%" });
+    });
+    if (bgImage) gsap.set(bgImage, { clearProps: "all" });
+    return;
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // RESPONSIVE CONFIG
+  // window.innerWidth check — no matchMedia conflict
+  // ─────────────────────────────────────────────────────────────
+
+  const isMobile = window.innerWidth <= 768;
+
+  const cfg = isMobile
+    ? {
+        // ── MOBILE ──
+        headingInitY   : "-8vh",
+        headingSettleY : "-2vh",
+        entryStart     : "top 70%",
+        entryEnd       : "top 20%",
+        pinEnd         : "+=110%",
+        bgScale        : 1.08,
+        labelOpacity   : 1,
+        scrubEntry     : 0.8,
+        scrubPin       : 1,
+      }
+    : {
+        // ── DESKTOP ──
+        headingInitY   : "-15vh",
+        headingSettleY : "-3vh",
+        entryStart     : "top 65%",
+        entryEnd       : "top 15%",
+        pinEnd         : "+=140%",
+        bgScale        : 1.12,
+        labelOpacity   : 0.9,
+        scrubEntry     : 1,
+        scrubPin       : 1.2,
+      };
+
+  // ─────────────────────────────────────────────────────────────
+  // TIMELINE POSITIONS  (normalized  0.0 → 1.0)
+  //
+  //  0.0  ──────── BG zoom starts
+  //  0.05 ──────── Statement 1 reveals
+  //   ...           (each statement spaced evenly)
+  //  0.62 ──────── Last statement done
+  //  0.66 ──────── Final line "Real transformation. Real impact."
+  //
+  //  ── FADEOUT ZONE ──────────────────────────────────────────
+  //  0.88 ──────── Fade starts  (was 0.75 — TOO EARLY = bug)
+  //  1.00 ──────── Fade ends = pin releases
+  //
+  //  scrub: 1.2 means scroll-up = smooth reverse fade-in ✅
+  // ─────────────────────────────────────────────────────────────
+
+  const STMT_START    = 0.05;
+  const STMT_ZONE_END = 0.62;
+  const FINAL_POS     = 0.66;
+  const FADE_START    = 0.88;  // ✅ FIX: was 0.75 (too early)
+  const FADE_DUR      = 0.12;  // 0.88 + 0.12 = 1.0 (ends exactly at pin release)
+
+  // Dynamic gap between statements
+  const stmtZone = STMT_ZONE_END - STMT_START;
+  const STMT_GAP = totalStatements > 1
+    ? stmtZone / (totalStatements - 1)
+    : 0;
+
+  // ─────────────────────────────────────────────────────────────
+  // STEP 1 — INITIAL STATES
+  // Set before any ScrollTrigger fires
+  // ─────────────────────────────────────────────────────────────
+
+  gsap.set(headingWrapper, { y: cfg.headingInitY, opacity: 0 });
+  gsap.set(label,          { y: 10, opacity: 0 });
+  gsap.set(statements,     { opacity: 0 });
+  gsap.set(finalEl,        { y: 12, opacity: 0 });
+  gsap.set(pinWrapper,     { opacity: 1 }); // ✅ ensure not pre-hidden
+
+  statements.forEach((stmt) => {
+    const txt = stmt.querySelector(".wim__statement-text");
+    if (txt) gsap.set(txt, { y: "100%" });
+  });
+
+  if (bgImage) gsap.set(bgImage, { scale: 1 });
+
+  // ─────────────────────────────────────────────────────────────
+  // STEP 2 — PHASE 1: ENTRY ANIMATION
+  // Heading + label slide in as section enters viewport
+  // scrub = smooth on scroll-up too (reverse entry)
+  // ─────────────────────────────────────────────────────────────
+
+  const entryTl = gsap.timeline({
+    scrollTrigger: {
+      trigger : section,
+      start   : cfg.entryStart,
+      end     : cfg.entryEnd,
+      scrub   : cfg.scrubEntry,
+    },
+  });
+
+  entryTl
+    .to(headingWrapper, {
+      y        : "0vh",
+      opacity  : 1,
+      duration : 1,
+      ease     : "power2.out",
+    })
+    .to(
+      label,
+      {
+        y        : 0,
+        opacity  : cfg.labelOpacity,
+        duration : 0.7,
+        ease     : "power2.out",
+      },
+      "-=0.5"
+    );
+
+  // ─────────────────────────────────────────────────────────────
+  // STEP 3 — PHASE 2: PINNED SCROLL TIMELINE
+  //
+  // pin: pinWrapper → only content is pinned, not the BG
+  // This allows BG to scroll naturally (parallax feel)
+  // invalidateOnRefresh → correct recalc on resize
+  // ─────────────────────────────────────────────────────────────
+
+  const wimTl = gsap.timeline({
+    scrollTrigger: {
+      trigger             : section,
+      start               : "top top",
+      end                 : cfg.pinEnd,
+      scrub               : cfg.scrubPin, // ✅ scrub = auto reverse on scroll-up
+      pin                 : pinWrapper,
+      anticipatePin       : 1,
+      pinSpacing          : true,
+      invalidateOnRefresh : true,         // ✅ correct calc after resize
+    },
+  });
+
+  // ── BG Zoom (full scroll duration) ──────────────────────────
+  if (bgImage) {
+    wimTl.to(
+      bgImage,
+      {
+        scale    : cfg.bgScale,
+        duration : 1,     // 1.0 = full normalized duration
+        ease     : "none",
+      },
+      0  // starts at position 0
+    );
+  }
+
+  // ── Heading: subtle upward drift while pinned ────────────────
+  wimTl.to(
+    headingWrapper,
+    {
+      y        : cfg.headingSettleY,
+      duration : 0.3,
+      ease     : "power1.inOut",
+    },
+    0
+  );
+
+  // ── Statements: reveal one by one ───────────────────────────
+  statements.forEach((stmt, index) => {
+    const stmtText = stmt.querySelector(".wim__statement-text");
+    const pos      = STMT_START + index * STMT_GAP;
+
+    // Opacity reveal
+    wimTl.to(
+      stmt,
+      {
+        opacity  : 1,
+        duration : 0.15,
+        ease     : "power2.out",
+      },
+      pos
+    );
+
+    // Text clip-reveal (slide up from hidden)
+    if (stmtText) {
+      wimTl.to(
+        stmtText,
+        {
+          y        : "0%",
+          duration : 0.18,
+          ease     : "power3.out",
+        },
+        pos
+      );
+    }
+  });
+
+  // ── Final tagline reveal ─────────────────────────────────────
+  wimTl.to(
+    finalEl,
+    {
+      opacity  : 1,
+      y        : 0,
+      duration : 0.08,
+      ease     : "power2.out",
+    },
+    FINAL_POS
+  );
+
+  // ── FADEOUT — last 12% of scroll only ───────────────────────
+  //
+  // ✅ FIX EXPLANATION:
+  //   OLD: FADE_START=0.75 → text faded when section was still
+  //        50%+ in viewport. User could see blank section.
+  //
+  //   NEW: FADE_START=0.88 → text only fades when section is
+  //        almost completely leaving viewport (last 12% of pin)
+  //
+  //   scrub:1.2 → scroll UP pe automatic smooth fade-IN reverse ✅
+  //   ease:"power1.inOut" → gradual, not sudden ✅
+  // ────────────────────────────────────────────────────────────
+
+  wimTl.to(
+    pinWrapper,
+    {
+      opacity  : 0,
+      duration : FADE_DUR,        // 0.12 = last 12% of total scroll
+      ease     : "power1.inOut",  // smooth, not abrupt
+    },
+    FADE_START                    // 0.88 = starts at 88%
+  );
+}
 
   // =========================================================
   // â”€â”€ Who We Are Section Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
