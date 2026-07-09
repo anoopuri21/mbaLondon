@@ -30,6 +30,166 @@
   }
 
   // =========================================================
+  // UTILITY â€” Mobile Detection
+  // =========================================================
+
+  function isMobile() {
+    return window.innerWidth < 768;
+  }
+
+  // =========================================================
+  // UTILITY â€” Debounce Function
+  // =========================================================
+
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // =========================================================
+  // UNIFIED INFINITE SLIDER
+  // Prevents duplicate initialization, proper cleanup, mobile optimized
+  // =========================================================
+
+  const activeSliders = new Map(); // Track active sliders for cleanup
+
+  function initInfiniteSlider(trackSelector, wrapperSelector, options = {}) {
+    const {
+      duration = 50,
+      direction = 'left',
+      enableOnMobile = false,
+    } = options;
+
+    // Check if already initialized
+    if (activeSliders.has(trackSelector)) {
+      console.warn(`Slider ${trackSelector} already initialized`);
+      return activeSliders.get(trackSelector);
+    }
+
+    // Skip on mobile if disabled
+    if (!enableOnMobile && isMobile()) {
+      console.log(`Slider ${trackSelector} disabled on mobile`);
+      return null;
+    }
+
+    const sliderTrack = document.querySelector(trackSelector);
+    const sliderWrapper = document.querySelector(wrapperSelector);
+
+    if (!sliderTrack || !sliderWrapper) {
+      console.warn(`Slider elements not found: ${trackSelector}, ${wrapperSelector}`);
+      return null;
+    }
+
+    const cards = sliderTrack.children;
+    if (cards.length === 0) {
+      console.warn(`No cards found in ${trackSelector}`);
+      return null;
+    }
+
+    // Clone cards ONCE for seamless loop
+    const originalCards = Array.from(cards);
+    originalCards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      sliderTrack.appendChild(clone);
+    });
+
+    // Set will-change for GPU acceleration
+    sliderTrack.style.willChange = "transform";
+
+    // Calculate total width
+    const totalWidth = sliderTrack.scrollWidth / 2;
+
+    // Create timeline with proper configuration
+    const sliderTl = gsap.timeline({
+      repeat: -1,
+      defaults: { ease: "none" },
+      onRepeat: () => {
+        // Reset position instantly for seamless loop
+        gsap.set(sliderTrack, { x: 0 });
+      }
+    });
+
+    // Animate based on direction
+    const targetX = direction === 'left' ? -totalWidth : totalWidth;
+    sliderTl.to(sliderTrack, {
+      x: targetX,
+      duration: duration,
+      ease: "none",
+    });
+
+    // Pause on hover with proper event handling
+    const handleMouseEnter = () => sliderTl.pause();
+    const handleMouseLeave = () => sliderTl.play();
+
+    sliderWrapper.addEventListener("mouseenter", handleMouseEnter, { passive: true });
+    sliderWrapper.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+
+    // Store references for cleanup
+    const sliderInstance = {
+      timeline: sliderTl,
+      track: sliderTrack,
+      wrapper: sliderWrapper,
+      eventListeners: [
+        { element: sliderWrapper, event: 'mouseenter', handler: handleMouseEnter },
+        { element: sliderWrapper, event: 'mouseleave', handler: handleMouseLeave },
+      ],
+      cleanup: function() {
+        // Kill timeline
+        this.timeline.kill();
+        
+        // Remove event listeners
+        this.eventListeners.forEach(({ element, event, handler }) => {
+          element.removeEventListener(event, handler);
+        });
+        
+        // Remove clones
+        const allCards = Array.from(this.track.children);
+        const cardsToRemove = allCards.slice(originalCards.length);
+        cardsToRemove.forEach(card => card.remove());
+        
+        // Reset styles
+        this.track.style.willChange = '';
+        gsap.set(this.track, { x: 0, clearProps: 'transform' });
+        
+        // Remove from active sliders
+        activeSliders.delete(trackSelector);
+      }
+    };
+
+    // Store in active sliders map
+    activeSliders.set(trackSelector, sliderInstance);
+
+    return sliderInstance;
+  }
+
+  // Cleanup all sliders (call on page unload/SPA navigation)
+  function cleanupAllSliders() {
+    activeSliders.forEach((slider) => slider.cleanup());
+    activeSliders.clear();
+  }
+
+  // Cleanup all ScrollTrigger instances
+  function cleanupAllScrollTriggers() {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  }
+
+  // Global cleanup function
+  function cleanupAllAnimations() {
+    cleanupAllSliders();
+    cleanupAllScrollTriggers();
+  }
+
+  // Add cleanup on page unload
+  window.addEventListener('beforeunload', cleanupAllAnimations);
+
+  // =========================================================
   // HERO ENTRANCE ANIMATION
   // initHeroAnimations()
   // =========================================================
@@ -3262,54 +3422,10 @@
 
   // ----- Infinite Logo Slider -----
   function initAccredSlider() {
-    const sliderTrack = document.querySelector(".accred-slider-track");
-    if (!sliderTrack) return;
-
-    const cards = sliderTrack.querySelectorAll(".accred-card");
-    if (cards.length === 0) return;
-
-    // Clone cards for seamless infinite loop
-    cards.forEach((card) => {
-      const clone = card.cloneNode(true);
-      sliderTrack.appendChild(clone);
-    });
-
-    // Set will-change for performance
-    sliderTrack.style.willChange = "transform";
-
-    // Create infinite scroll animation
-    const sliderTl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
-
-    // Calculate total width for seamless loop
-    const totalWidth = sliderTrack.scrollWidth / 2;
-
-    // Animate from 0 to -totalWidth (left to right movement)
-    sliderTl.to(sliderTrack, {
-      x: -totalWidth,
+    initInfiniteSlider('.accred-slider-track', '.accred-slider-wrapper', {
       duration: 50,
-      ease: "none",
-    });
-
-    // Pause on hover
-    const sliderWrapper = document.querySelector(".accred-slider-wrapper");
-    if (sliderWrapper) {
-      sliderWrapper.addEventListener("mouseenter", () => {
-        sliderTl.pause();
-      });
-
-      sliderWrapper.addEventListener("mouseleave", () => {
-        sliderTl.play();
-      });
-    }
-
-    // Debounce resize handler
-    let resizeTimeout;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        sliderTl.kill();
-        initAccredSlider();
-      }, 250);
+      direction: 'left',
+      enableOnMobile: false, // Disable on mobile for performance
     });
   }
 
@@ -3317,6 +3433,22 @@
   function initAccredScrollAnimations() {
     const accredSection = document.querySelector("#accreditations");
     if (!accredSection) return;
+
+    // Skip scroll animations on mobile for performance
+    if (isMobile()) {
+      gsap.set(
+        [
+          ".accreditations .section-label",
+          ".accreditations__heading",
+          ".accreditations__subheading",
+          ".accreditations__badges",
+          ".accred-slider-track .accred-card",
+          ".accreditations__trust",
+        ],
+        { clearProps: "all", opacity: 1 },
+      );
+      return;
+    }
 
     // 1. Section label fades in
     const sectionLabel = accredSection.querySelector(".section-label");
@@ -3333,6 +3465,7 @@
             trigger: "#accreditations",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3353,6 +3486,7 @@
             trigger: "#accreditations",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3374,6 +3508,7 @@
             trigger: "#accreditations",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3395,6 +3530,7 @@
             trigger: "#accreditations",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3416,6 +3552,7 @@
             trigger: "#accreditations",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3437,6 +3574,7 @@
             trigger: "#accreditations",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3475,54 +3613,10 @@
 
   // ----- Infinite Logo Slider -----
   function initNetworkSlider() {
-    const sliderTrack = document.querySelector(".network-slider-track");
-    if (!sliderTrack) return;
-
-    const cards = sliderTrack.querySelectorAll(".network-card");
-    if (cards.length === 0) return;
-
-    // Clone cards for seamless infinite loop
-    cards.forEach((card) => {
-      const clone = card.cloneNode(true);
-      sliderTrack.appendChild(clone);
-    });
-
-    // Set will-change for performance
-    sliderTrack.style.willChange = "transform";
-
-    // Create infinite scroll animation
-    const sliderTl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
-
-    // Calculate total width for seamless loop
-    const totalWidth = sliderTrack.scrollWidth / 2;
-
-    // Animate from 0 to -totalWidth (left to right movement)
-    sliderTl.to(sliderTrack, {
-      x: -totalWidth,
+    initInfiniteSlider('.network-slider-track', '.network-slider-wrapper', {
       duration: 50,
-      ease: "none",
-    });
-
-    // Pause on hover
-    const sliderWrapper = document.querySelector(".network-slider-wrapper");
-    if (sliderWrapper) {
-      sliderWrapper.addEventListener("mouseenter", () => {
-        sliderTl.pause();
-      });
-
-      sliderWrapper.addEventListener("mouseleave", () => {
-        sliderTl.play();
-      });
-    }
-
-    // Debounce resize handler
-    let resizeTimeout;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        sliderTl.kill();
-        initNetworkSlider();
-      }, 250);
+      direction: 'left',
+      enableOnMobile: false, // Disable on mobile for performance
     });
   }
 
@@ -3530,6 +3624,22 @@
   function initNetworkScrollAnimations() {
     const networkSection = document.querySelector("#alumni-network");
     if (!networkSection) return;
+
+    // Skip scroll animations on mobile for performance
+    if (isMobile()) {
+      gsap.set(
+        [
+          ".network .section-label",
+          ".network__heading",
+          ".network__subheading",
+          ".network__description",
+          ".network-slider-track .network-card",
+          ".network__trust",
+        ],
+        { clearProps: "all", opacity: 1 },
+      );
+      return;
+    }
 
     // 1. Section label fades in
     const sectionLabel = networkSection.querySelector(".section-label");
@@ -3546,6 +3656,7 @@
             trigger: "#alumni-network",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3566,6 +3677,7 @@
             trigger: "#alumni-network",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3587,6 +3699,7 @@
             trigger: "#alumni-network",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3608,6 +3721,7 @@
             trigger: "#alumni-network",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3629,6 +3743,7 @@
             trigger: "#alumni-network",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
@@ -3650,6 +3765,7 @@
             trigger: "#alumni-network",
             start: "top 80%",
             toggleActions: "play none none none",
+            once: true,
           },
         },
       );
