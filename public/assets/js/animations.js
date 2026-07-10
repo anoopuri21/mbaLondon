@@ -16,17 +16,17 @@
     return window.innerWidth < 768;
   }
 
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
+  // function debounce(func, wait) {
+  //   let timeout;
+  //   return function executedFunction(...args) {
+  //     const later = () => {
+  //       clearTimeout(timeout);
+  //       func(...args);
+  //     };
+  //     clearTimeout(timeout);
+  //     timeout = setTimeout(later, wait);
+  //   };
+  // }
 
   const activeSliders = new Map();
 
@@ -43,7 +43,6 @@
     }
 
     if (!enableOnMobile && isMobile()) {
-      console.log(`Slider ${trackSelector} disabled on mobile`);
       return null;
     }
 
@@ -3014,319 +3013,432 @@ function initWIMAnimations() {
   // Accreditations, Partnerships & Recognitions Section Animations
   // =========================================================
 
-  function initAccreditationsAnimations() {
-    if (!elementExists("#accreditations")) return;
+  // function initAccreditationsAnimations() {
+  //   if (!elementExists("#accreditations")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+  //   const prefersReducedMotion = window.matchMedia(
+  //     "(prefers-reduced-motion: reduce)",
+  //   ).matches;
 
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          ".accreditations__header",
-          ".accreditations__badges",
-          ".accred-slider-track .accred-card",
-          ".accreditations__trust",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      return;
-    }
+  //   if (prefersReducedMotion) {
+  //     gsap.set(
+  //       [
+  //         ".accreditations__header",
+  //         ".accreditations__badges",
+  //         ".accred-slider-track .accred-card",
+  //         ".accreditations__trust",
+  //       ],
+  //       { clearProps: "all", opacity: 1 },
+  //     );
+  //     return;
+  //   }
 
-    initAccredSlider();
-    initAccredScrollAnimations();
-  }
+  //   initAccredSlider();
+  //   initAccredScrollAnimations();
+  // }
 
-  function initAccredSlider() {
-    initInfiniteSlider('.accred-slider-track', '.accred-slider-wrapper', {
-      duration: 50,
-      direction: 'left',
-      enableOnMobile: false,
-    });
-  }
+  // function initAccredSlider() {
+  //   initInfiniteSlider('.accred-slider-track', '.accred-slider-wrapper', {
+  //     duration: 50,
+  //     direction: 'left',
+  //     enableOnMobile: false,
+  //   });
+  // }
 
-  function initAccredScrollAnimations() {
-    const accredSection = document.querySelector("#accreditations");
-    if (!accredSection) return;
+  // function initAccredScrollAnimations() {
+  //   const accredSection = document.querySelector("#accreditations");
+  //   if (!accredSection) return;
 
-    if (isMobile()) {
-      gsap.set(
-        [
-          ".accreditations .section-label",
-          ".accreditations__heading",
-          ".accreditations__subheading",
-          ".accreditations__badges",
-          ".accred-slider-track .accred-card",
-          ".accreditations__trust",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      return;
-    }
+  //   if (isMobile()) {
+  //     gsap.set(
+  //       [
+  //         ".accreditations .section-label",
+  //         ".accreditations__heading",
+  //         ".accreditations__subheading",
+  //         ".accreditations__badges",
+  //         ".accred-slider-track .accred-card",
+  //         ".accreditations__trust",
+  //       ],
+  //       { clearProps: "all", opacity: 1 },
+  //     );
+  //     return;
+  //   }
 
-    const sectionLabel = accredSection.querySelector(".section-label");
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
+  //   const sectionLabel = accredSection.querySelector(".section-label");
+  //   if (sectionLabel) {
+  //     gsap.fromTo(
+  //       sectionLabel,
+  //       { opacity: 0, y: 20 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.6,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#accreditations",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
 
-    const heading = accredSection.querySelector(".accreditations__heading");
-    if (heading) {
-      gsap.fromTo(
-        heading,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
+  //   const heading = accredSection.querySelector(".accreditations__heading");
+  //   if (heading) {
+  //     gsap.fromTo(
+  //       heading,
+  //       { opacity: 0, y: 30 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.8,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#accreditations",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
 
-    const subheading = accredSection.querySelector(".accreditations__subheading");
-    if (subheading) {
-      gsap.fromTo(
-        subheading,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
+  //   const subheading = accredSection.querySelector(".accreditations__subheading");
+  //   if (subheading) {
+  //     gsap.fromTo(
+  //       subheading,
+  //       { opacity: 0, y: 30 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.8,
+  //         delay: 0.1,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#accreditations",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
 
-    const badges = document.querySelectorAll(".accreditations__badges");
-    if (badges.length) {
-      gsap.fromTo(
-        badges,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
+  //   const badges = document.querySelectorAll(".accreditations__badges");
+  //   if (badges.length) {
+  //     gsap.fromTo(
+  //       badges,
+  //       { opacity: 0, y: 20 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.6,
+  //         stagger: 0.1,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#accreditations",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
 
-    const cards = document.querySelectorAll(".accred-slider-track .accred-card");
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.05,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
+  //   const cards = document.querySelectorAll(".accred-slider-track .accred-card");
+  //   if (cards.length) {
+  //     gsap.fromTo(
+  //       cards,
+  //       { scale: 0.9, opacity: 0 },
+  //       {
+  //         scale: 1,
+  //         opacity: 1,
+  //         duration: 0.7,
+  //         stagger: 0.05,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#accreditations",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
 
-    const trust = document.querySelector(".accreditations__trust");
-    if (trust) {
-      gsap.fromTo(
-        trust,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          delay: 0.3,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
-  }
+  //   const trust = document.querySelector(".accreditations__trust");
+  //   if (trust) {
+  //     gsap.fromTo(
+  //       trust,
+  //       { opacity: 0, y: 20 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.6,
+  //         delay: 0.3,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#accreditations",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+  // }
 
   // =========================================================
   // Network / Alumni Section Animations
   // =========================================================
 
-  function initNetworkAnimations() {
-    if (!elementExists("#alumni-network")) return;
+  // function initNetworkAnimations() {
+  //   if (!elementExists("#alumni-network")) return;
+
+  //   const prefersReducedMotion = window.matchMedia(
+  //     "(prefers-reduced-motion: reduce)",
+  //   ).matches;
+
+  //   if (prefersReducedMotion) {
+  //     gsap.set(
+  //       [
+  //         ".network__header",
+  //         ".network-slider-track .network-card",
+  //         ".network__trust",
+  //       ],
+  //       { clearProps: "all", opacity: 1 },
+  //     );
+  //     return;
+  //   }
+
+  //   initNetworkSlider();
+  //   initNetworkScrollAnimations();
+  // }
+
+  // function initNetworkSlider() {
+  //   initInfiniteSlider('.network-slider-track', '.network-slider-wrapper', {
+  //     duration: 50,
+  //     direction: 'left',
+  //     enableOnMobile: false, 
+  //   });
+  // }
+
+  // function initNetworkScrollAnimations() {
+  //   const networkSection = document.querySelector("#alumni-network");
+  //   if (!networkSection) return;
+
+  //   if (isMobile()) {
+  //     gsap.set(
+  //       [
+  //         ".network .section-label",
+  //         ".network__heading",
+  //         ".network__subheading",
+  //         ".network__description",
+  //         ".network-slider-track .network-card",
+  //         ".network__trust",
+  //       ],
+  //       { clearProps: "all", opacity: 1 },
+  //     );
+  //     return;
+  //   }
+
+  //   const sectionLabel = networkSection.querySelector(".section-label");
+  //   if (sectionLabel) {
+  //     gsap.fromTo(
+  //       sectionLabel,
+  //       { opacity: 0, y: 20 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.6,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#alumni-network",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+
+  //   const heading = networkSection.querySelector(".network__heading");
+  //   if (heading) {
+  //     gsap.fromTo(
+  //       heading,
+  //       { opacity: 0, y: 30 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.8,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#alumni-network",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+
+  //   const subheading = networkSection.querySelector(".network__subheading");
+  //   if (subheading) {
+  //     gsap.fromTo(
+  //       subheading,
+  //       { opacity: 0, y: 30 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.8,
+  //         delay: 0.1,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#alumni-network",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+
+  //   const description = networkSection.querySelector(".network__description");
+  //   if (description) {
+  //     gsap.fromTo(
+  //       description,
+  //       { opacity: 0, y: 30 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.8,
+  //         delay: 0.2,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#alumni-network",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+
+  //   const cards = document.querySelectorAll(".network-slider-track .network-card");
+  //   if (cards.length) {
+  //     gsap.fromTo(
+  //       cards,
+  //       { scale: 0.9, opacity: 0 },
+  //       {
+  //         scale: 1,
+  //         opacity: 1,
+  //         duration: 0.7,
+  //         stagger: 0.05,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#alumni-network",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+
+  //   const trust = document.querySelector(".network__trust");
+  //   if (trust) {
+  //     gsap.fromTo(
+  //       trust,
+  //       { opacity: 0, y: 20 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.6,
+  //         delay: 0.3,
+  //         ease: "power2.out",
+  //         scrollTrigger: {
+  //           trigger: "#alumni-network",
+  //           start: "top 80%",
+  //           toggleActions: "play none none none",
+  //           once: true,
+  //         },
+  //       },
+  //     );
+  //   }
+  // }
+  // =========================================================
+  // ── Logo Slider Sections (Shared) ──────────────────────
+  // Used by: Accreditations + Alumni Network
+  // Infinite logo slider + scroll reveal animations
+  // =========================================================
+
+  function initLogoSliderSection(config) {
+    const {
+      sectionId,
+      sliderTrackSelector,
+      sliderWrapperSelector,
+      cardSelector,
+      fades,
+    } = config;
+
+    const sectionSelector = "#" + sectionId;
+    if (!elementExists(sectionSelector)) return;
+
+    const allAnimatedSelectors = [
+      ...fades.map((f) => f.selector),
+      cardSelector,
+    ];
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set(
-        [
-          ".network__header",
-          ".network-slider-track .network-card",
-          ".network__trust",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
+      gsap.set(allAnimatedSelectors, { opacity: 1, y: 0, x: 0, scale: 1 });
       return;
     }
 
-    initNetworkSlider();
-    initNetworkScrollAnimations();
-  }
-
-  function initNetworkSlider() {
-    initInfiniteSlider('.network-slider-track', '.network-slider-wrapper', {
+    // Infinite slider
+    initInfiniteSlider(sliderTrackSelector, sliderWrapperSelector, {
       duration: 50,
-      direction: 'left',
-      enableOnMobile: false, 
+      direction: "left",
+      enableOnMobile: true,
     });
-  }
 
-  function initNetworkScrollAnimations() {
-    const networkSection = document.querySelector("#alumni-network");
-    if (!networkSection) return;
-
+    // Skip scroll-reveal animations on mobile for performance
     if (isMobile()) {
-      gsap.set(
-        [
-          ".network .section-label",
-          ".network__heading",
-          ".network__subheading",
-          ".network__description",
-          ".network-slider-track .network-card",
-          ".network__trust",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
+      gsap.set(allAnimatedSelectors, { opacity: 1, y: 0, x: 0, scale: 1 });
       return;
     }
 
-    const sectionLabel = networkSection.querySelector(".section-label");
-    if (sectionLabel) {
+    // Simple fade-up blocks (label, heading, subheading, badges/description, trust)
+    fades.forEach((f) => {
+      const els = document.querySelectorAll(f.selector);
+      if (!els.length) return;
+
       gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 20 },
+        els,
+        { opacity: 0, y: f.y },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          duration: f.duration,
+          delay: f.delay || 0,
+          stagger: f.stagger || 0,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: "#alumni-network",
+            trigger: sectionSelector,
             start: "top 80%",
             toggleActions: "play none none none",
             once: true,
           },
         },
       );
-    }
+    });
 
-    const heading = networkSection.querySelector(".network__heading");
-    if (heading) {
-      gsap.fromTo(
-        heading,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
-
-    const subheading = networkSection.querySelector(".network__subheading");
-    if (subheading) {
-      gsap.fromTo(
-        subheading,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
-
-    const description = networkSection.querySelector(".network__description");
-    if (description) {
-      gsap.fromTo(
-        description,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll(".network-slider-track .network-card");
+    // Card scale-in
+    const cards = document.querySelectorAll(cardSelector);
     if (cards.length) {
       gsap.fromTo(
         cards,
@@ -3338,28 +3450,7 @@ function initWIMAnimations() {
           stagger: 0.05,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
-
-    const trust = document.querySelector(".network__trust");
-    if (trust) {
-      gsap.fromTo(
-        trust,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          delay: 0.3,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
+            trigger: sectionSelector,
             start: "top 80%",
             toggleActions: "play none none none",
             once: true,
@@ -3369,6 +3460,67 @@ function initWIMAnimations() {
     }
   }
 
+  // =========================================================
+  // ── Accreditations, Partnerships & Recognitions Section ──
+  // =========================================================
+
+  function initAccreditationsAnimations() {
+    initLogoSliderSection({
+      sectionId: "accreditations",
+      sliderTrackSelector: ".accred-slider-track",
+      sliderWrapperSelector: ".accred-slider-wrapper",
+      cardSelector: ".accred-slider-track .accred-card",
+      fades: [
+        { selector: "#accreditations .section-label", y: 20, duration: 0.6 },
+        { selector: ".accreditations__heading", y: 30, duration: 0.8 },
+        {
+          selector: ".accreditations__subheading",
+          y: 30,
+          duration: 0.8,
+          delay: 0.1,
+        },
+        {
+          selector: ".accreditations__badges",
+          y: 20,
+          duration: 0.6,
+          stagger: 0.1,
+        },
+        { selector: ".accreditations__trust", y: 20, duration: 0.6, delay: 0.3 },
+      ],
+    });
+  }
+
+  // =========================================================
+  // ── Alumni Network Section (Slider Portion) ──────────────
+  // Note: Heading/label text-reveal handled separately in
+  // initAlumniAnimations(); this handles slider + remaining fades.
+  // =========================================================
+
+  function initNetworkAnimations() {
+    initLogoSliderSection({
+      sectionId: "alumni-network",
+      sliderTrackSelector: ".network-slider-track",
+      sliderWrapperSelector: ".network-slider-wrapper",
+      cardSelector: ".network-slider-track .network-card",
+      fades: [
+        { selector: "#alumni-network .section-label", y: 20, duration: 0.6 },
+        { selector: ".network__heading", y: 30, duration: 0.8 },
+        {
+          selector: ".network__subheading",
+          y: 30,
+          duration: 0.8,
+          delay: 0.1,
+        },
+        {
+          selector: ".network__description",
+          y: 30,
+          duration: 0.8,
+          delay: 0.2,
+        },
+        { selector: ".network__trust", y: 20, duration: 0.6, delay: 0.3 },
+      ],
+    });
+  }
   function initAllAnimations() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -3439,10 +3591,6 @@ function initWIMAnimations() {
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
     }
-
-    console.log(
-      "Maverick Animations â€” Hero + Numbers + WIM + WWA + WWD + HWDI + Insights + Events + Testimonials + Final CTA Modules Initialized",
-    );
   }
 
   function startAnimations() {

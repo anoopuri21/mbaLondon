@@ -16,6 +16,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+  <!-- Preconnect for third-party scripts & assets -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://mbalondon.org.uk" crossorigin />
+
   <!-- Fonts -->
   <!-- Roboto -->
   <link href="https://fonts.cdnfonts.com/css/pp-neue-montreal" rel="stylesheet">
@@ -424,7 +430,8 @@
       <!-- Layer 1: Video Background -->
       <div class="hero__video-wrapper" aria-hidden="true">
         <video class="hero__video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-          <source src="assets/videos/maverick-hero.webm" type="video/webm" />
+          <source src="https://res.cloudinary.com/i08gwudw/video/upload/v1783604725/maverick-hero_sxhbex.webm"
+            type="video/webm" />
         </video>
         <!-- Fallback image for when video fails or is disabled -->
         <div class="hero__video-fallback img-placeholder" aria-hidden="true"></div>
@@ -782,7 +789,7 @@
 
               <!-- Replace with actual image later -->
               <div class="ceo__image">
-                <img src="assets/images/mba-ceo.jpg"
+                <img src="https://res.cloudinary.com/i08gwudw/image/upload/v1783478429/ASD01131_v3opum.jpg"
                   alt="Dr. Shaik Fazil Saleem, Founder and CEO of Maverick Business Academy" />
               </div>
 
@@ -1749,7 +1756,7 @@
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <div class="insights__scroll" data-scroll-container>
+          <div class="insights__scroll" data-scroll-container data-lenis-prevent>
             <div class="insights__track">
               <!-- DYNAMIC START: insight-cards -->
               <article class="insights__card fade-up">
@@ -1863,7 +1870,7 @@
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <div class="events__scroll" data-scroll-container>
+          <div class="events__scroll" data-scroll-container data-lenis-prevent>
             <div class="events__track">
               <!-- DYNAMIC START: event-cards -->
               <article class="events__card fade-up">
@@ -1972,7 +1979,7 @@
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <div class="testimonials__scroll" data-scroll-container>
+          <div class="testimonials__scroll" data-scroll-container data-lenis-prevent>
             <div class="testimonials__track" id="testimonialsTrack">
               <!-- DYNAMIC START: testimonial-cards -->
               <!-- Cards rendered by testimonials.js -->

@@ -128,9 +128,10 @@
     gap: 1rem;
   }
   .faq-img {display: none;}
-  alumni__inner {
-  border-radius: 20px;
-}
+  .alumni::before {
+    top: 10%;
+    right: 0px;
+  }
 }
 
 @media (max-width: 480px) {

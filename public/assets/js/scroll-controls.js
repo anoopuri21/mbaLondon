@@ -3,7 +3,9 @@
 
   const SCROLL_AMOUNT_DESKTOP = 420;
   const SCROLL_DURATION = 600;
-  const DRAG_THRESHOLD = 5; // pixels — must exceed this to count as drag
+  const DRAG_THRESHOLD = 5;
+
+  const rowUpdaters = [];
 
   function initScrollRow(row) {
     const container = row.querySelector("[data-scroll-container]");
@@ -152,8 +154,21 @@
       nextBtn.disabled = container.scrollLeft >= maxScroll - 1;
     }
 
-    container.addEventListener("scroll", updateButtons);
-    window.addEventListener("resize", updateButtons);
+        let scrollTicking = false;
+    container.addEventListener(
+      "scroll",
+      () => {
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+          updateButtons();
+          scrollTicking = false;
+        });
+      },
+      { passive: true },
+    );
+
+    rowUpdaters.push(updateButtons);
 
     updateButtons();
     setTimeout(updateButtons, 500);
@@ -163,6 +178,21 @@
   function init() {
     const rows = document.querySelectorAll("[data-scroll-row]");
     rows.forEach(initScrollRow);
+
+    // Single shared, RAF-throttled resize listener for all rows
+    let resizeTicking = false;
+    window.addEventListener(
+      "resize",
+      () => {
+        if (resizeTicking) return;
+        resizeTicking = true;
+        requestAnimationFrame(() => {
+          rowUpdaters.forEach((fn) => fn());
+          resizeTicking = false;
+        });
+      },
+      { passive: true },
+    );
   }
 
   if (document.readyState === "loading") {

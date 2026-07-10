@@ -396,6 +396,11 @@
 
     // Ensure navbar is visible
     navbar.classList.remove('is-hidden');
+
+    // Stop Lenis while mobile menu overlay is open
+    if (window.lenisInstance && typeof window.lenisInstance.stop === 'function') {
+      window.lenisInstance.stop();
+    }
   }
 
   function closeMobileMenu() {
@@ -414,6 +419,11 @@
 
     // Close all submenus
     closeAllMobileSubmenus();
+
+    // Resume Lenis after mobile menu overlay closes
+    if (window.lenisInstance && typeof window.lenisInstance.start === 'function') {
+      window.lenisInstance.start();
+    }
   }
 
   function toggleMobileMenu() {
@@ -605,8 +615,6 @@
         resizeRaf = false;
       });
     }, { passive: true });
-
-    console.log('Maverick Navigation — Full Interaction Module Initialized');
   }
 
   if (document.readyState === 'loading') {

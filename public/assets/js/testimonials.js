@@ -95,10 +95,9 @@
     // Detect YouTube vs local video
     let playerContent;
     if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-      // YouTube iframe
-      playerContent = `<iframe src="${videoUrl}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      const separator = videoUrl.includes("?") ? "&" : "?";
+      playerContent = `<iframe src="${videoUrl}${separator}autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     } else {
-      // Local HTML5 video
       playerContent = `<video src="${videoUrl}" controls autoplay></video>`;
     }
 

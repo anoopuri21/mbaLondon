@@ -336,7 +336,7 @@ color: var(--color-white)
 .why{position:relative;}
 .why:before {
     content: "";
-    background: url(../images/homepage/bgm-wm.png) no-repeat;
+    background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png') no-repeat;
     background-size: contain;
     background-color: #fff;
     background-position: center right;
@@ -544,7 +544,11 @@ color: var(--color-white)
   overflow: hidden;
   position: relative;
 }
-
+.ceo__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .ceo__image::before {
   content: "";
   position: absolute;

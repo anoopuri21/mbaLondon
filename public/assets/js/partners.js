@@ -168,6 +168,8 @@
   let resizeTimer = null;
   let librariesLoaded = false;
   let librariesLoading = false;
+  let lastRenderedWidth = 0;
+  let lastRenderedHeight = 0;
 
   // ========================================================
   // ── LAZY SCRIPT LOADER ──────────────────────────────────
@@ -245,6 +247,9 @@
       console.warn("[Partners] Container has zero dimensions, skipping render");
       return;
     }
+
+    lastRenderedWidth = width;
+    lastRenderedHeight = height;
 
     // Mercator projection
     projection = d3.geoMercator();
@@ -363,6 +368,16 @@
 
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
+      const container = document.getElementById("partnersMapContainer");
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const widthChanged = Math.abs(rect.width - lastRenderedWidth) > 5;
+      const heightChanged = Math.abs(rect.height - lastRenderedHeight) > 5;
+
+      // Skip redundant full re-render (e.g. mobile URL bar show/hide only changes height slightly)
+      if (!widthChanged && !heightChanged) return;
+
       mapInitialized = false; // Force re-render
       renderD3Map();
     }, RESIZE_DEBOUNCE_MS);
@@ -504,8 +519,8 @@
     pinsContainer.addEventListener("click", (e) => {
       const pin = e.target.closest(".partners__pin");
       if (pin) {
+        // Desktop: map + panel are side-by-side, no scroll needed
         renderDetailPanel(pin.dataset.countryId);
-        scrollToDetailPanel();
       }
     });
 
@@ -515,7 +530,6 @@
         if (pin) {
           e.preventDefault();
           renderDetailPanel(pin.dataset.countryId);
-          scrollToDetailPanel();
         }
       }
     });
@@ -538,15 +552,15 @@
     const panel = document.getElementById("partnersDetailPanel");
     if (!panel) return;
 
+    if (typeof window.maverickScrollTo === "function") {
+      window.maverickScrollTo(panel, { offset: 100, duration: 1.2 });
+      return;
+    }
+
     const offset = 100;
     const panelTop =
       panel.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    if (window.lenis && typeof window.lenis.scrollTo === "function") {
-      window.lenis.scrollTo(panelTop, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: panelTop, behavior: "smooth" });
-    }
+    window.scrollTo({ top: panelTop, behavior: "smooth" });
   }
 
   // ========================================================

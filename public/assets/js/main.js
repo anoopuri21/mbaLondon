@@ -63,8 +63,6 @@
       // Make Lenis globally available for other scripts
       window.lenisInstance = lenis;
 
-      console.log('Maverick — Lenis Smooth Scroll Initialized');
-
       // Set global flag and dispatch event
       window.__lenisReady = true;
       document.dispatchEvent(new CustomEvent('lenisReady'));
@@ -187,17 +185,9 @@
     // Lenis must initialize before ScrollTrigger-dependent scripts
     initLenis();
 
-    if (typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.refresh();
-    }
-
-    document.dispatchEvent(new CustomEvent('lenisReady'));
-
     initLoadingState();
     initAnchorScrolling();
     initFAQAccordion();
-
-    console.log('Maverick Homepage Initialized');
   }
 
   if (document.readyState === 'loading') {
